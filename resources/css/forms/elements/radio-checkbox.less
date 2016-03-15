@@ -1,0 +1,126 @@
+.radio,
+.checkbox{
+    color: @input-color;
+    padding-bottom: 10px;
+    & + &{
+       margin-left: 25px;
+    }
+
+    > label{
+        cursor: pointer;
+        white-space: nowrap;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        *{
+            pointer-events: none;
+        }
+    }
+
+    input{
+        width: 0.1px;
+        height: 0.1px;
+        position: absolute;
+        left: -9999px;
+
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    input{
+        + label{
+            position: relative;
+            display: inline-block;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid @input-color;
+            margin-bottom: 0;
+            margin-right: 4px;
+            max-width: none;
+        }
+    }
+
+    &__disabled{
+        color: @input-disabled-color;
+        > label{
+            cursor: not-allowed;
+        }
+        input{
+            + label{
+                border-color: @input-disabled-color;
+            }
+        }
+    }
+}
+
+.radio{
+    input{
+        + label{
+            &:after{
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                background-color: transparent;
+                border-radius: 50%;
+                .translate(-50%, -50%);
+            }
+        }
+        &:checked + label{
+            &:after{
+                background: @input-color;
+            }
+        }
+    }
+    &__disabled{
+        input{
+            &:checked + label{
+                &:after{
+                    background: @input-disabled-color;
+                }
+            }
+        }
+    }
+}
+
+.checkbox{
+    input{
+        + label{
+            border-radius: 2px;
+            &:after{
+                font-family: @icon-font;
+                font-size: 1.2rem;
+                padding-top: 2px;
+                text-align: center;
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 16px;
+                height: 16px;
+                background-color: @input-color;
+                border-radius: 2px;
+                .translate(-50%, -50%);
+            }
+        }
+        &:checked + label{
+            &:after{
+                content: '\f00c';
+                color: #fff;
+            }
+        }
+    }
+
+    &__disabled{
+        input{
+            + label{
+                &:after{
+                    background-color: @input-disabled-color;
+                }
+            }
+        }
+    }
+}

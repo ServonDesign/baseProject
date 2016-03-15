@@ -1,0 +1,23 @@
+// Blockquotes
+blockquote, q{
+    quotes: none;
+    &:before, &:after{
+        content: none;
+    }
+}
+
+blockquote {
+    padding: 10px 15px;
+    border-left: 4px solid @blockquote-border-color;
+    line-height: @p-line-height;
+    margin-bottom: @margin-bottom;
+
+    p,
+    ul,
+    ol {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+}

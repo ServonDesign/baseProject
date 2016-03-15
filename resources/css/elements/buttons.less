@@ -1,0 +1,35 @@
+button {
+    overflow: visible;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    -webkit-font-smoothing: inherit;
+    letter-spacing: inherit;
+    font: inherit;
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.btn{
+    display: inline-block;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid @input-border;
+    color: @input-color;
+    border-radius: @input-border-radius;
+    background: @input-bg;
+}

@@ -1,0 +1,13 @@
+{
+	"name": "app",
+	"version": "1.0.0",
+	"main": "resources/js/main.js",
+	"ignore": [
+   		".jshintrc",
+    	"**/*.txt"
+	],
+	"dependencies": {
+		"jquery" : "",
+		"underscore" : ""
+	}
+}

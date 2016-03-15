@@ -1,0 +1,27 @@
+{
+  "name": "teststyleguide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "component-styleguide": "",
+    "babel-preset-es2015": "",
+    "babelify": "",
+    "grunt": "",
+    "grunt-concurrent": "",
+    "grunt-contrib-less": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-watch": "",
+    "grunt-browserify": "",
+    "grunt-nodemon": "",
+    "grunt-eslint": "",
+    "grunt-extract-sourcemap": "",
+    "load-grunt-tasks": "",
+    "open": ""
+  }
+}

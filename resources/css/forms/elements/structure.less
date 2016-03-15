@@ -1,0 +1,49 @@
+&-group{
+    margin-bottom: 15px;
+}
+
+&-group&-group-short{
+    input{
+        width: 70%;
+    }
+}
+
+&-group-btn-right{
+    .flexbox();
+    .justify-content(end);
+}
+
+&__inline &-group{
+    & + .bn-form-group{
+        margin-left: 15px;
+    }
+}
+
+&__inline{
+    .flexbox();
+    .align-items(center);
+    .flex-wrap(wrap);
+    .radio,
+    .checkbox{
+        input{
+            + label{
+                margin-right: 0;
+                margin-left: 4px;
+            }
+        }
+    }
+}
+
+&-column{
+    .gutter-p(0, none);
+    .base-column();
+    &-half{
+        .gutter-p(0);
+        .column-p(6);
+    }
+}
+
+&-center{
+    .flexbox();
+    .justify-content(center);
+}

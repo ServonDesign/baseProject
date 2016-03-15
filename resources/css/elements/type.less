@@ -1,0 +1,122 @@
+//
+// Typography
+// --------------------------------------------------
+
+.variable-font-size(@base-scale: @perfect-fourth, @base-size: @base-font-size){
+    .typeVars(@base-scale, @base-size);
+    body{
+        font-size: @font-size;
+    }
+
+    h1, .h1{
+        font-size: @font-size-h1;
+    }
+    h2, .h2{
+        font-size: @font-size-h2;
+    }
+    h3, .h3{
+        font-size: @font-size-h3;
+    }
+    h4, .h4{
+        font-size: @font-size-h4;
+    }
+    h5, .h5{
+        font-size: @font-size-h5;
+    }
+    h6, .h6{
+        font-size: @font-size-h6;
+    }
+
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"]{
+        font-size: @font-size;
+    }
+}
+
+.variable-font-size();
+
+@media (min-width: @sm-min) {
+    .variable-font-size(@major-third);
+}
+@media (min-width: @md-min) {
+    .variable-font-size(@perfect-fourth);
+}
+@media (min-width: @lg-min) {
+    .variable-font-size(@perfect-fifth);
+}
+
+// Headings
+// -------------------------
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @h-line-height;
+    color: @headings-color;
+    margin-top: @margin-top;
+    margin-bottom: @margin-bottom;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+    &+h1, &+.h1, &+h2, &+.h2, &+h3, &+.h3, &+h4, &+.h4, &+h5, &+.h5, &+h6, &+.h6{
+        margin-top: @margin-top-neg;
+    }
+    &:first-child{
+        margin-top: 0;
+    }
+}
+
+h6, .h6{
+    /* For browsers that don’t support OpenType,
+    * features, use all caps. */
+    text-transform: uppercase;
+
+    /* Progressively enhance with `font-feature-settings`
+    * if `font-variant-caps` isn’t supported. */
+    @supports not (font-variant-caps: small-caps) {
+        text-transform: inherit;
+        font-feature-settings: "lnum", "smcp", "c2sc" 0;
+        font-size: 1em;
+    }
+
+    /* Otherwise, and ideally, use `font-variant-caps`. */
+    @supports (font-variant-caps: small-caps) {
+        text-transform: inherit;
+        font-variant-caps: small-caps;
+        font-size: 1em;
+    }
+}
+
+// Type Styles
+// -----------------
+p, table, pre{
+    line-height: @p-line-height;
+    margin-bottom: @margin-bottom;
+}
+
+strong{
+    font-weight: @strong-weight;
+}
+
+h1, .h1, h2, .h2, h3, .h3{
+    & + p{
+        font-weight: bold;
+        &.normal{
+            font-weight: normal;
+        }
+    }
+}

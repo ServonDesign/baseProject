@@ -1,0 +1,109 @@
+----------------------------------------------
+CSS
+----------------------------------------------
+
+/*------------------------------------*\
+    #SECTION-TITLE
+\*------------------------------------*/
+
+
+Aligning
+
+.foo {
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.bar {
+    position: absolute;
+    top:    0;
+    right:  0;
+    bottom: 0;
+    left:   0;
+    margin-right: -10px;
+    margin-left:  -10px;
+    padding-right: 10px;
+    padding-left:  10px;
+}
+
+
+
+for javascript hook use
+prefix a class for js hooks, don't use a class with styles
+.js-btn etc.
+
+
+
+Include one space after : for each declaration.
+
+
+
+
+Declaration order
+Related property declarations should be grouped together following the order:
+
+Positioning
+Box model
+Typographic
+Visual
+
+.declaration-order {
+  /* Positioning */
+  position: absolute;
+  top:      0;
+  right:    0;
+  bottom:   0;
+  left:     0;
+  z-index:  100;
+
+  /* Box-model */
+  display:  block;
+  float:    right;
+  width:    100px;
+  height:   100px;
+
+  /* Typography */
+  font-size:    13px;
+  font-family:  "Helvetica Neue", sans-serif;
+  font-weight:  400;
+  line-height:  1.5;
+  color:        #333;
+  text-align:   center;
+
+  /* Visual */
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+
+  /* Misc */
+  opacity: 1;
+}
+
+
+
+Don't use shorthand notation ie
+
+padding: 0 0 0 0;
+margin: 0 0 0 0;
+font
+background
+border
+border-radius
+
+better to set specfifc values as prevents overwriting
+
+----------------------------------------------
+HTML
+----------------------------------------------
+
+Attribute order
+HTML attributes should come in this particular order for easier reading of code.
+
+class
+id, name
+data-*
+src, for, type, href, value
+title, alt
+aria-*, role
+Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.

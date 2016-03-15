@@ -1,0 +1,25 @@
+&-select{
+    position: relative;
+    select{
+        padding-right: 32px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        cursor: pointer;
+    }
+    &:after{
+        font-family: @icon-font;
+        content: '\f0d7';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        .translate(0, -50%);
+        color: @input-color;
+        pointer-events: none;
+    }
+    &__disabled{
+        cursor: not-allowed;
+        &:after{
+            color: @input-disabled-color;
+        }
+    }
+}
