@@ -1,5 +1,6 @@
 {
 	"env":{
+		"es6": true,
 		"browser" : true,
 		"jquery": true
 	},
@@ -8,6 +9,6 @@
         "sourceType": "module"
     },
     "rules": {
-    	
+    	"no-console": 0
     }
 }

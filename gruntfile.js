@@ -44,6 +44,24 @@ gruntConfig.nodemon = {
 	}
 };
 
+gruntConfig.browserify = {
+	dist: {
+		options: {
+			browserifyOptions: {
+				debug: true 
+			},
+			transform: [
+				["babelify", {
+					presets: ['es2015']
+				}]
+			]
+		},
+		files: {
+			"./resources/js/dist/index.js": ["./resources/js/src/index.js"]
+		}
+	}
+};
+
 gruntConfig.eslint = {
 	scripts: {
 		options: {
@@ -53,10 +71,23 @@ gruntConfig.eslint = {
 	}
 }
 
+gruntConfig.extract_sourcemap = {
+	scripts: {
+		files: {
+			'./resources/js/dist/' : ['./resources/js/dist/index.js']
+		}
+	}
+};
+
 gruntConfig.uglify = {
 	scripts: {
+		options: {
+			sourceMap: true,
+        	sourceMapIncludeSources: true,
+        	sourceMapIn: './resources/js/dist/index.js.map'
+		},
 		files:{
-			'./resources/js/main.min.js' : ['./resources/js/main.js']
+			'./resources/js/dist/main.min.js' : ['./resources/js/dist/index.js']
 		}
 	}
 };
@@ -79,7 +110,7 @@ gruntConfig.watch = {
 	},
 	scripts: {
 		files: ['./resources/js/**/*.js', '!./resources/js/vendor/**/*.js', '!./resources/js/**/*.min.js'],
-		tasks: ["eslint", "uglify"]
+		tasks: ["eslint", "browserify", "extract_sourcemap", "uglify"]
 	}
 };
 
