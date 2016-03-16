@@ -1,12 +1,13 @@
 // Blockquotes
 blockquote, q{
     quotes: none;
+    font-style: italic;
     &:before, &:after{
         content: none;
     }
 }
 
-blockquote {
+blockquote{
     padding: 10px 15px;
     border-left: 4px solid @blockquote-border-color;
     line-height: @p-line-height;

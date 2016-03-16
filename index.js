@@ -6,5 +6,5 @@ styleguide({
     staticLocalDir: './resources',
     staticPath: '/resources',
     stylesheets: ['css/main.css', 'css/styleguide.css'],
-    scripts: ['js/vendor/jquery.slim.min.js', 'js/vendor/underscore-min.js', 'js/dist/main.min.js'],
+    scripts: ['js/vendor/jquery.slim.min.js', 'js/vendor/underscore-min.js', 'js/style-guide/sg-svg.js', 'js/dist/main.min.js'],
 });

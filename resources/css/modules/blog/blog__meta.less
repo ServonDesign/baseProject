@@ -1,0 +1,30 @@
+.meta{
+	font-size: 1.4rem;
+
+	&--inline{
+		margin-bottom: 25px;
+	}
+
+	&--small{
+		font-size: 1.2rem;
+	}
+	
+	&__item + &__item{
+		&:before{
+			content: '|';
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	}
+
+	&__item{
+		b{
+			color: @blog-color-light;
+		}
+
+		&,
+		&--author{
+			color: @blog-color-dark;
+		}
+	}
+}

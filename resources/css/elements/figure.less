@@ -1,0 +1,33 @@
+.figure{
+	.nested-container();
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	&__image,
+	&__caption{
+		.gutter-p(0, none);
+		.base-column-p();
+	}
+
+	&--caption-right &__image{
+		.gutter-p(0);
+		.column(5, md, padding);
+		@media(min-width: @md-min){
+			padding-right: 15px;
+			padding-left: 0;
+		}
+	}
+
+	&--caption-right &__caption{
+		.gutter-p(0);
+		.column(7, md, padding);
+
+		color: @blog-color-light;
+		.flexbox();
+		.align-items(center);
+		.align-content(center);
+		@media(min-width: @md-min){
+			padding-right: 15px;
+		}
+	}
+}

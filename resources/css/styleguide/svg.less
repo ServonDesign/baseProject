@@ -1,0 +1,19 @@
+.svg-list{
+	.flexbox();
+	.flex-wrap(wrap);
+}
+
+.svg-item{
+	.column-m(2);
+	.flexbox();
+	.flex-direction(column);
+	.align-items(center);
+
+	cursor: pointer;
+	&--fill{
+		fill: #666;
+	}
+	&--stroke{
+		stroke: #666;
+	}
+}

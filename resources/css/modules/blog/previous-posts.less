@@ -1,0 +1,25 @@
+.previous-post{
+	&__item{
+		border-left: 1px solid @sidebar-light;
+		margin-left: 18px;
+		padding-left: (35px + 18px);
+		padding-bottom: 30px;
+		position: relative;
+
+		@media(min-width: @lg-min){
+			padding-left: (50px + 18px);
+		}
+
+		p{
+			font-size: 1.4rem;
+		}
+
+		&:first-of-type{
+			padding-top: (40px - 18px);
+		}
+
+		&:last-of-type{
+			padding-bottom: 20px;
+		}
+	}
+}
