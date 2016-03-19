@@ -2,15 +2,24 @@
 	.container();
 
 	&__details,
-	&__sidebar{
-		
+	&__sidebar,
+	&__results{
 		padding-top: 50px;
+		padding-bottom: 50px;
 	}
 
-	&__details{
+	&__details,
+	&__results{
 		.base-column-m();
 		.column-m(7);
 		.flex-grow(1);
+	}
+
+	&__results{
+		&-title{
+			.base-column-m();
+			margin-bottom: 40px;
+		}
 	}
 
 	&__sidebar{
@@ -23,20 +32,11 @@
 
 		&--has-background &-background{
 			position: absolute;
-			z-index: 1;
+			z-index: -1;
 			top: 0;
 			left: 0;
 			background-color: @blog-sidebar-background;
 			width: 50vw;
-			height: 100%;
-		}
-
-		&--has-background &-content{
-			position: absolute;
-			z-index: 2;
-			top: 50px;
-			left: 0;
-			width: 100%;
 			height: 100%;
 		}
 	}

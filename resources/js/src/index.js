@@ -1,4 +1,4 @@
-import {square, MyClass} from './import';
+import {square, MyClass} from "./import";
 // 25
 console.log(square(5));
 

@@ -5,7 +5,7 @@
 		padding-left: (35px + 18px);
 		padding-bottom: 30px;
 		position: relative;
-
+		
 		@media(min-width: @lg-min){
 			padding-left: (50px + 18px);
 		}
@@ -20,6 +20,29 @@
 
 		&:last-of-type{
 			padding-bottom: 20px;
+		}
+
+		.sidebar__item__icon{
+			top: 0;
+			left: 0;
+			.translate(-50%, 0);
+
+			&--first{
+				top: (40px - 18px);
+			}
+		}
+
+		&-content{
+			display: block;
+			text-decoration: none;
+		}
+
+		&-title{
+			&:hover,
+			&:focus,
+			&:active{
+				color: @sidebar-dark;
+			}
 		}
 	}
 }

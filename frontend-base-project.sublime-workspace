@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
 				"side",
 				"sidebar-bands.less"
 			],
@@ -62,10 +70,6 @@
 			[
 				"context",
 				"contextAsArray"
-			],
-			[
-				"text",
-				"text-align"
 			],
 			[
 				"just",
@@ -510,87 +514,11 @@
 			[
 				"plot",
 				"plotnum"
-			],
-			[
-				"check",
-				"checkbox	(template.html)"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "components/blog/previous-posts.html",
-			"settings":
-			{
-				"buffer_size": 1639,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "components/blog/sidebar-bands.html",
-			"settings":
-			{
-				"buffer_size": 604,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "components/blog/basic-blog.html",
-			"settings":
-			{
-				"buffer_size": 3777,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/modules/blog/previous-posts.less",
-			"settings":
-			{
-				"buffer_size": 372,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/modules/blog/sidebar.less",
-			"settings":
-			{
-				"buffer_size": 1443,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/modules/blog/sidebar-bands.less",
-			"settings":
-			{
-				"buffer_size": 73,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/main.less",
-			"settings":
-			{
-				"buffer_size": 811,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/elements/figure.less",
-			"settings":
-			{
-				"buffer_size": 524,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "resources/css/main.css",
-			"settings":
-			{
-				"buffer_size": 33402,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -600,9 +528,25 @@
 	"command_palette":
 	{
 		"height": 375.0,
-		"last_filter": "",
+		"last_filter": "ad",
 		"selected_items":
 		[
+			[
+				"ad",
+				"ANF: Delete File"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
 			[
 				"remov",
 				"Package Control: Remove Package"
@@ -614,10 +558,6 @@
 			[
 				"inst",
 				"Package Control: Install Package"
-			],
-			[
-				"list",
-				"Package Control: List Packages"
 			],
 			[
 				"insta",
@@ -633,14 +573,6 @@
 			],
 			[
 				"remo",
-				"Package Control: Remove Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"remove",
 				"Package Control: Remove Package"
 			],
 			[
@@ -702,23 +634,45 @@
 	},
 	"expanded_folders":
 	[
-		"/C/data/frontend-dev/base-project/components",
 		"/C/data/frontend-dev/base-project/components/blog",
-		"/C/data/frontend-dev/base-project/components/util",
 		"/C/data/frontend-dev/base-project/resources",
 		"/C/data/frontend-dev/base-project/resources/css",
-		"/C/data/frontend-dev/base-project/resources/css/elements",
-		"/C/data/frontend-dev/base-project/resources/css/styleguide"
+		"/C/data/frontend-dev/base-project/resources/css/base",
+		"/C/data/frontend-dev/base-project/resources/css/base/animation",
+		"/C/data/frontend-dev/base-project/resources/css/base/variables",
+		"/C/data/frontend-dev/base-project/resources/css/modules",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog"
 	],
 	"file_history":
 	[
-		"/C/data/frontend-dev/base-project/components/blog/basic-blog.html",
+		"/C/data/frontend-dev/base-project/components/blog/layout_results.html",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog/blog.less",
 		"/C/data/frontend-dev/base-project/resources/css/modules/blog/blog__meta.less",
-		"/C/data/frontend-dev/base-project/resources/css/modules/blog/previous-posts.less",
-		"/C/data/frontend-dev/base-project/components/blog/blog-meta.html",
-		"/C/data/frontend-dev/base-project/resources/css/modules/blog/sidebar.less",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog/results.less",
 		"/C/data/frontend-dev/base-project/resources/css/base/variables/colour.less",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog/sidebar-bands.less",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog/sidebar.less",
 		"/C/data/frontend-dev/base-project/resources/css/main.less",
+		"/C/data/frontend-dev/base-project/resources/css/elements/type.less",
+		"/C/data/frontend-dev/base-project/components/blog/layout_details.html",
+		"/C/data/frontend-dev/base-project/components/blog/c_image.html",
+		"/C/data/frontend-dev/base-project/components/blog/c_meta.html",
+		"/C/data/frontend-dev/base-project/components/blog/c_sidebar.html",
+		"/C/data/frontend-dev/base-project/components/blog/c_previous-posts.html",
+		"/C/data/frontend-dev/base-project/components/blog/c_sidebar-bands.html",
+		"/C/data/frontend-dev/base-project/components/blog/components_blog_details.html",
+		"/C/data/frontend-dev/base-project/components/blog/sidebar-bands.html",
+		"/C/data/frontend-dev/base-project/resources/css/modules/blog/previous-posts.less",
+		"/C/data/frontend-dev/base-project/components/blog/previous-posts.html",
+		"/C/data/frontend-dev/base-project/components/blog/basic-blog.html",
+		"/C/data/frontend-dev/base-project/resources/css/elements/links.less",
+		"/C/data/frontend-dev/base-project/resources/js/src/index.js",
+		"/C/data/frontend-dev/base-project/resources/js/src/import.js",
+		"/C/data/frontend-dev/base-project/.eslintrc.js",
+		"/C/data/frontend-dev/base-project/.eslintrc",
+		"/C/data/frontend-dev/base-project/resources/css/elements/figure.less",
+		"/C/data/frontend-dev/base-project/resources/css/main.css",
+		"/C/data/frontend-dev/base-project/components/blog/blog-meta.html",
 		"/C/data/frontend-dev/base-project/resources/css/styleguide.css",
 		"/C/data/frontend-dev/base-project/components/util/svgsprite.html",
 		"/C/Users/developer1/Desktop/ui-24px-outline-2_filter.svg",
@@ -726,7 +680,6 @@
 		"/C/data/frontend-dev/base-project/resources/css/styleguide/svg.less",
 		"/C/Users/developer1/Desktop/files-24px-outline_folder-14.svg",
 		"/C/Users/developer1/Desktop/ui-24px-outline-2_menu-35.svg",
-		"/C/data/frontend-dev/base-project/resources/css/modules/blog/blog.less",
 		"/C/data/frontend-dev/base-project/resources/css/base/mixins/grid_mixins.less",
 		"/C/data/frontend-dev/base-project/resources/css/styleguide.less",
 		"/C/data/frontend-dev/base-project/index.js",
@@ -735,17 +688,13 @@
 		"/C/data/frontend-dev/base-project/resources/css/elements/image.less",
 		"/C/data/frontend-dev/base-project/components/blog/blog-image-figure.html",
 		"/C/Users/developer1/Desktop/standard-grid-lover-text.txt",
-		"/C/data/frontend-dev/base-project/resources/css/elements/type.less",
 		"/C/data/frontend-dev/base-project/resources/css/base/variables/typevars.less",
-		"/C/data/frontend-dev/base-project/resources/css/elements/figure.less",
 		"/C/data/frontend-dev/base-project/resources/css/utility/ratios.less",
 		"/C/data/frontend-dev/base-project/resources/css/elements/quotes.less",
 		"/C/data/frontend-dev/base-project/resources/css/modules/blog/variables.less",
 		"/C/data/frontend-dev/base-project/resources/css/base/reset.less",
 		"/C/data/frontend-dev/base-project/components/blog/blog-image-figure.less",
-		"/C/data/frontend-dev/base-project/resources/js/src/index.js",
 		"/C/data/frontend-dev/base-project/index.html",
-		"/C/data/frontend-dev/base-project/resources/js/src/import.js",
 		"/C/Users/developer1/Desktop/babel test/gruntfile.js",
 		"/C/data/frontend-dev/base-project/gruntfile.js",
 		"/C/data/frontend-dev/base-project/eslint.json",
@@ -758,7 +707,6 @@
 		"/C/data/frontend-dev/base-project/bower.json",
 		"/C/data/frontend-dev/base-project/resources/css/base/print.less",
 		"/C/data/frontend-dev/base-project/resources/css/main.css.map",
-		"/C/data/frontend-dev/base-project/resources/css/main.css",
 		"/C/data/frontend-dev/base-project/components/z-elements/05-inline-elements.html",
 		"/C/data/frontend-dev/base-project/components/z-elements/13-ratios.html",
 		"/C/data/frontend-dev/base-project/resources/css/utility/visibility.less",
@@ -774,7 +722,6 @@
 		"/C/data/frontend-dev/base-project/resources/js/src/vendor/dom-selector.js",
 		"/C/data/frontend-dev/base-project/resources/js/src/util.js",
 		"/C/data/frontend-dev/base-project/resources/js/dist/index.js",
-		"/C/data/frontend-dev/base-project/.eslintrc.js",
 		"/C/data/frontend-dev/base-project/resources/js/src/vendor/classie.js",
 		"/C/data/frontend-dev/base-project/resources/js/src/vendor/dom-selector-pseudos.js",
 		"/C/data/frontend-dev/base-project/resources/css/base/animation/easing.less",
@@ -825,21 +772,7 @@
 		"/C/data/frontend-dev/adkwik/resources/css/modules/category-list.less",
 		"/C/data/frontend-dev/adkwik/contact.html",
 		"/C/data/frontend-dev/adkwik/components/items/details-item.html",
-		"/C/data/frontend-dev/adkwik/resources/css/forms/elements/inputs.less",
-		"/C/data/frontend-dev/adkwik/resources/css/modules/bands.less",
-		"/C/data/frontend-dev/adkwik/resources/css/modules/item/options.less",
-		"/C/data/frontend-dev/adkwik/components/items/price-accordion.html",
-		"/C/Users/developer1/Desktop/ui-24px-glyph-2_square-add-08.svg",
-		"/C/Users/developer1/Desktop/ui-24px-glyph-2_square-delete-10.svg",
-		"/C/data/frontend-dev/adkwik/components/util/svgshow.html",
-		"/C/data/frontend-dev/adkwik/components/util/svgsprite.html",
-		"/C/Users/developer1/Desktop/ui-16px-2_square-add-08.svg",
-		"/C/data/frontend-dev/adkwik/resources/css/vendor/slick-theme.less",
-		"/C/data/frontend-dev/adkwik/resources/css/modules/item/details.less",
-		"/C/data/frontend-dev/adkwik/resources/css/modules/slide.less",
-		"/C/data/frontend-dev/adkwik/resources/css/vendor/slick.less",
-		"/C/Users/developer1/Desktop/home.css",
-		"/C/data/frontend-dev/adkwik/resources/css/modules/breadcrumbs.less"
+		"/C/data/frontend-dev/adkwik/resources/css/forms/elements/inputs.less"
 	],
 	"find":
 	{
@@ -931,6 +864,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<a href=\"#\">",
+			"Oranges",
 			"div",
 			"sidebar-item__icon",
 			"background",
@@ -1056,9 +991,7 @@
 			"stroke-linejoin=\"miter\"",
 			"stroke-width=\"2\" ",
 			"data-color=\"color-2\" ",
-			"stroke=\"#444444\" ",
-			"25px",
-			"45px"
+			"stroke=\"#444444\" "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1086,802 +1019,8 @@
 	"groups":
 	[
 		{
-			"selected": 7,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "components/blog/previous-posts.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1639,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1639,
-								1639
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "components/blog/sidebar-bands.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 604,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								152,
-								152
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "components/blog/basic-blog.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3777,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3747,
-								3747
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "resources/css/modules/blog/previous-posts.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 372,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								227,
-								227
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "resources/css/modules/blog/sidebar.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1443,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								284,
-								284
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "resources/css/modules/blog/sidebar-bands.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 73,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								73,
-								73
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "resources/css/main.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 811,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								707,
-								707
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "resources/css/elements/figure.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 524,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								508,
-								508
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "resources/css/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 33402,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				}
 			]
 		}
 	],
