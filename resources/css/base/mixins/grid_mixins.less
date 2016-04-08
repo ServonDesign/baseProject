@@ -49,10 +49,17 @@
 //========
 // Columns
 //========
-.base-column(@gutterType: @default-gutterType){
+.base-column(@gutterType: @default-gutterType, @gutterSize: @column-gutter-half){
 	@gridWidth: 100%;
+	.gutter(@gutterSize, none, @gutterType);
 	#column-helpers.getWidthType(@gutterType);
 	@rules();
+}
+
+.base-column-nogutter(){
+	@gridWidth: 100%;
+	@gutterType: padding;
+	#column-helpers.getWidthType(@gutterType);
 }
 
 .base-column-m(){
@@ -71,7 +78,17 @@
 	@rules();
 }
 
-.column(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType){
+.column(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType, @gutterSize: @column-gutter-half){
+	.gutter(@gutterSize, @breakpoint, @gutterType);
+	#column-helpers.getColumnWidth(@columns, @breakpoint, @gutterType);
+}
+
+.column-nogutter(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType){
+	#column-helpers.getColumnWidth-nogutter(@columns, @breakpoint, @gutterType);
+}
+
+.column-push(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType, @pushColumns: 1, @gutterSize: @column-gutter-half){
+	.push(@pushColumns, @gutterSize, @breakpoint, @gutterType);
 	#column-helpers.getColumnWidth(@columns, @breakpoint, @gutterType);
 }
 
@@ -97,6 +114,7 @@
 
 	.getColumnWidth(@columns, @breakpoint, @gutterType) when (default()){
 		.getBreakpoint(@breakpoint);
+		.getBreakpointRules(@breakpoint);
 		@media(min-width: @breakpointValue){
 			.cacluateWidth(@columns);
 			.getWidthType(@gutterType);
@@ -104,6 +122,18 @@
 		}
 	}
 
+	.getColumnWidth-nogutter(@columns, @breakpoint, @gutterType) when (@breakpoint = none){
+		.cacluateWidth(@columns);
+		.getWidthType(@gutterType);
+	}
+
+	.getColumnWidth-nogutter(@columns, @breakpoint, @gutterType) when (default()){
+		.getBreakpoint(@breakpoint);
+		@media(min-width: @breakpointValue){
+			.cacluateWidth(@columns);
+			.getWidthType(@gutterType);
+		}
+	}
 
 
 	.getWidthType(@gutterType) when (@gutterType = padding){
@@ -127,25 +157,35 @@
     }
 
 
-
 	.getBreakpoint(@breakpoint) when (@breakpoint = xs){
         @breakpointValue: @xs-min;
-        @breakpointExtraRules: @xs-rules;
     }
     .getBreakpoint(@breakpoint) when (@breakpoint = sm){
         @breakpointValue: @sm-min;
-        @breakpointExtraRules: @sm-rules;
     }
     .getBreakpoint(@breakpoint) when (@breakpoint = md){
         @breakpointValue: @md-min;
-        @breakpointExtraRules: @md-rules;
     }
     .getBreakpoint(@breakpoint) when (@breakpoint = lg){
         @breakpointValue: @lg-min;
-        @breakpointExtraRules: @lg-rules;
     }
     .getBreakpoint(@breakpoint) when (@breakpoint = xlg){
         @breakpointValue: @xlg-min;
+    }
+
+    .getBreakpointRules(@breakpoint) when (@breakpoint = xs){
+        @breakpointExtraRules: @xs-rules;
+    }
+    .getBreakpointRules(@breakpoint) when (@breakpoint = sm){
+        @breakpointExtraRules: @sm-rules;
+    }
+    .getBreakpointRules(@breakpoint) when (@breakpoint = md){
+        @breakpointExtraRules: @md-rules;
+    }
+    .getBreakpointRules(@breakpoint) when (@breakpoint = lg){
+        @breakpointExtraRules: @lg-rules;
+    }
+    .getBreakpointRules(@breakpoint) when (@breakpoint = xlg){
         @breakpointExtraRules: @xlg-rules;
     }
 }

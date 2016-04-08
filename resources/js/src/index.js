@@ -1,13 +1,30 @@
-import {square, MyClass} from "./import";
-// 25
-console.log(square(5));
+import $ from "./../vendor/jquery/dist/jquery";
+import {sum, square, MyClass} from "./import";
 
-var cred = {
-    name: 'Ritesh Kumar',
-    enrollmentNo: 11115078
+$(document).ready(init);
+
+function init(){
+	runImportedFunctions();
 }
 
-var x = new MyClass(cred);
+function runImportedFunctions(){
+	// 25
+	console.log(square(5));
 
-//Ritesh Kumar
-console.log(x.getName());
+	var cred = {
+		name: "Ritesh Kumar",
+		enrollmentNo: 11115078
+	};
+
+	var x = new MyClass(cred);
+
+	//Ritesh Kumar
+	console.log(x.getName());
+
+	console.log(sum(4,5));
+
+	console.log($([]));
+
+	console.log($.fn);
+}
+
