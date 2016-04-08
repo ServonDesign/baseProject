@@ -1,4 +1,4 @@
-//move styleguide to top folder, add this file into client folder of component-styleguide
+//swap out node-modules/component-styleguide/client/styleguide.js
 (function() {
 
     var navHeight = $('.sg-header')[0].offsetHeight;

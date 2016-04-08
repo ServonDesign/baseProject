@@ -1,4 +1,4 @@
-var styleguide = require('./component-styleguide');
+var styleguide = require('component-styleguide');
 styleguide({
 	components: 'components',
     ext: 'html',

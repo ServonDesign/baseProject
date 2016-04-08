@@ -19,6 +19,7 @@
     "gulp-util": "^3.0.7",
     "less-plugin-clean-css": "^1.5.1",
     "merge-stream": "^1.0.0",
+    "open": "0.0.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
