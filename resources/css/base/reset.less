@@ -1,13 +1,15 @@
 *,
 *:before,
-*:after {
-    box-sizing: border-box;
+*:after{
+	box-sizing: border-box;
 }
 
+/* stylelint-disable selector-list-comma-newline-after */
 h1, h2, h3, h4, h5, h6, p, blockquote, button, figure{
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
+/* stylelint-enable */
 
 article,
 aside,
@@ -21,27 +23,31 @@ blockquote,
 menu,
 nav,
 section,
-summary {
-  display: block;
+summary{
+	display: block;
 }
 
 /* Responsive images and other embedded objects */
-img,object,embed,video,iframe {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    border: 0;
-}
-/* Responsive images aspeсt ratio */
-img,video,iframe {
-    height: auto;
-}
-
-::-moz-focus-inner {
-    padding: 0;
-    border: 0;
+img,
+object,
+embed,
+video,
+iframe{
+	display: block;
+	width: auto;
+	max-width: 100%;
+	border: 0;
 }
 
-:focus {
-    outline: 0;
+video{
+	height: auto;
+}
+
+::-moz-focus-inner{
+	padding: 0;
+	border: 0;
+}
+
+:focus{
+	outline: 0;
 }

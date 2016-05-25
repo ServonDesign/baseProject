@@ -35,15 +35,15 @@
 
 //fontsize
 .typeVars(@base-scale: @perfect-fourth, @base-size: @base-font-size){
-    //base font size and line height
-    @font-size:         @base-size;
-    @scale-factor:      @base-scale;
+	//base font size and line height
+	@font-size: @base-size;
+	@scale-factor: @base-scale;
 
-    //heading font size
-    @font-size-h1:      round( (@font-size * 10) * pow(@scale-factor, 3) ) / 10;
-    @font-size-h2:      round( (@font-size * 10) * pow(@scale-factor, 2) ) / 10;
-    @font-size-h3:      round( (@font-size * 10) * pow(@scale-factor, 1) ) / 10;
-    @font-size-h4:      round( (@font-size * 10) * pow(@scale-factor, 0.5) ) / 10;
-    @font-size-h5:      @font-size;
-    @font-size-h6:      round( (@font-size * 10) * pow(@scale-factor, -1) ) / 10;
+	//heading font size
+	@font-size-h1: round((@font-size * 10) * pow(@scale-factor, 3)) / 10;
+	@font-size-h2: round((@font-size * 10) * pow(@scale-factor, 2)) / 10;
+	@font-size-h3: round((@font-size * 10) * pow(@scale-factor, 1)) / 10;
+	@font-size-h4: round((@font-size * 10) * pow(@scale-factor, 0.5)) / 10;
+	@font-size-h5: @font-size;
+	@font-size-h6: round((@font-size * 10) * pow(@scale-factor, -1)) / 10;
 }

@@ -1,52 +1,14 @@
-//global packages
-// browserify
-// eslint
-// nodemon
+//global packages = [browserify, eslint, nodemon, postcss-cli]
+var gulp 		= require('gulp'),
+    sourcemaps 	= require('gulp-sourcemaps'),
+    watch 		= require('gulp-watch');
+   
 
-var gulp 				= require('gulp'),
-
-	less 				= require('gulp-less'),
-	LessPluginCleanCSS 	= require('less-plugin-clean-css'),
-    cleancss 			= new LessPluginCleanCSS({ advanced: true }),
-
-    sourcemaps 			= require('gulp-sourcemaps'),
-
-    eslint 				= require('gulp-eslint'),
-    watchify 			= require('watchify'),
-    browserify 			= require('browserify'),
-    babelify 			= require('babelify'),
-    uglify 				= require('gulp-uglify'),
-
-    source 				= require('vinyl-source-stream'),
-    buffer 				= require('vinyl-buffer'),
-
-    nodemon 			= require('gulp-nodemon'),
-
-    rename 				= require('gulp-rename'),
-    merge  				= require('merge-stream'),
-    assign 				= require('lodash.assign')
-    gutil 				= require('gulp-util'),
-    chalk 				= require('chalk');
-
-
-gulp.task('less', function(){
-	return gulp.src(['./resources/css/main.less', './resources/css/styleguide.less'])
-		.pipe(sourcemaps.init())
-		.pipe(less({
-			plugins: [cleancss]
-		}))
-		.on('error', map_error)
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('./resources/css'));
-});
-
-gulp.task('watchLess', function(){
-	var lessWatch = gulp.watch('./resources/css/**/*.less', ['less']);
-	lessWatch.on('change',  function(e){
-		console.log('File ' + e.path + ' was ' + e.type);
-	});
-});
-
+//===============================
+// 		Util
+//===============================
+var gutil = require('gulp-util'),
+    chalk = require('chalk');
 
 function map_error(err) {
 	if (err.fileName) {
@@ -70,7 +32,90 @@ function map_error(err) {
 	}
 }
 
-gulp.task('watchify', function () {
+
+//===============================
+// 		Css - Tasks
+//===============================
+
+var less 				= require('gulp-less'),
+	LessPluginCleanCSS 	= require('less-plugin-clean-css'),
+    cleancss 			= new LessPluginCleanCSS({ advanced: true }),
+    postcss 			= require('gulp-postcss'),
+    reporter 			= require('postcss-reporter'),
+    postcssLess 		= require('postcss-less');
+
+gulp.task('less', function(){
+	return gulp.src(['./resources/css/main.less', './resources/css/styleguide.less'])
+		.pipe(sourcemaps.init())
+		.pipe(less({
+			plugins: [cleancss]
+		}))
+		.on('error', map_error)
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('./resources/css'));
+});
+
+gulp.task('stylelint', function(){
+	var stylelint = require('stylelint');
+
+	return gulp.src('./resources/css/**/*.less')
+		.pipe(watch('./resources/css/**/*.less'))
+		.pipe(postcss(
+			[
+				stylelint(),
+				reporter({ clearMessages: true })
+			],
+			{
+				syntax: postcssLess
+			}
+		));
+});
+
+gulp.task('doiuse', function(){
+	var doiuse = require('doiuse');
+
+	return gulp.src('./resources/css/**/*.less')
+		.pipe(watch('./resources/css/**/*.less'))
+		.pipe(postcss(
+			[
+				doiuse({
+					browsers: ['ie >= 10', 'last 2 versions']
+				}),
+				reporter({ clearMessages: true })
+			],
+			{
+				syntax: postcssLess
+			}
+		));
+});
+
+gulp.task('watch-less', function(){
+	var lessWatch = gulp.watch('./resources/css/**/*.less', ['less']);
+	lessWatch.on('change',  function(e){
+		console.log('File ' + e.path + ' was ' + e.type);
+	});
+});
+
+gulp.task('analyse-less', ['stylelint', 'doiuse']);
+gulp.task('build-less', ['analyseCss', 'less'])
+
+
+//===============================
+// 		Javascript - Tasks
+//===============================
+
+var watchify 			= require('watchify'),
+    browserify 			= require('browserify'),
+    babelify 			= require('babelify'),
+    uglify 				= require('gulp-uglify'),
+
+    rename 				= require('gulp-rename'),
+    merge  				= require('merge-stream'),
+    assign 				= require('lodash.assign'),
+    source 				= require('vinyl-source-stream'),
+    buffer 				= require('vinyl-buffer');
+
+gulp.task('watch-js', function () {
 	var customOpts = {
 		entries: ['./resources/js/src/index.js'],
   		debug: true
@@ -79,20 +124,7 @@ gulp.task('watchify', function () {
 	var bundler = watchify(browserify(options)).transform(babelify, { presets: ['es2015'] });
 
 	var scripts = function(changedFiles){
-		var compileStream = bundle_js(bundler);
-
-		if(changedFiles){
-			console.log('File Changed: ', changedFiles.join(','));
-			var lintStream = gulp.src(changedFiles)
-				.pipe(eslint({
-					configFile: './eslint.json'
-				}))
-				.pipe(eslint.format());
-
-			return merge(lintStream, compileStream);
-		}
-
-		return compileStream;
+		return bundle_js(bundler);
 	};
 
 	bundler.on('update', scripts);
@@ -113,13 +145,18 @@ function bundle_js(bundler) {
 		.pipe(gulp.dest('./resources/js/dist'));
 }
 
-gulp.task('browserify', function(){
+gulp.task('build-js', function(){
 	var bundler = browserify('./resources/js/src/index.js').transform(babelify, { presets: ['es2015'] });
 	return bundle_js(bundler);
 });
 
+//===============================
+// 		Style guide - Tasks
+//===============================
 
 gulp.task('styleguide', function(){
+	var nodemon = require('gulp-nodemon');
+
 	nodemon({
 		script: 'index.js',
 		watch: ['./components', './resources/js/dist', 'resources/css'],
@@ -132,5 +169,12 @@ gulp.task('styleguide', function(){
 	});
 });
 
-gulp.task('build', ['browserify', 'less']);
-gulp.task('watch', ['styleguide', 'watchify', 'watchLess']);
+
+//===============================
+// 		Grouped Tasks
+//===============================
+
+gulp.task('build', ['build-js', 'build-less']);
+gulp.task('watch', ['styleguide', 'watch-js', 'watch-less']);
+//task: analyse-less
+gulp.task('default', ["watch"]);
