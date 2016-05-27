@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["styleguide.less"],"sourcesContent":["//varibles and mixins\r\n@import \"base/variables\";\r\n@import \"base/mixins\";\r\n\r\n//style guide\r\n@import \"styleguide/base\";\r\n@import \"styleguide/svg\";\r\n"],"file":"styleguide.less","sourceRoot":"/source/"}

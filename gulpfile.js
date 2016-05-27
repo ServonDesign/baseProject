@@ -48,7 +48,7 @@ gulp.task('less', function(){
 	return gulp.src(['./resources/css/main.less', './resources/css/styleguide.less'])
 		.pipe(sourcemaps.init())
 		.pipe(less({
-			plugins: [cleancss]
+			//plugins: [cleancss]
 		}))
 		.on('error', map_error)
 		.pipe(sourcemaps.write('.'))

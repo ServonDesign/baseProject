@@ -1,4 +1,4 @@
-var sum = (a, b = 6) => (a + b);
+var sum = (a, b) => (a + b);
 
 var square = (b) => {
     return b * b;
