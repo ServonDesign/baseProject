@@ -8,6 +8,10 @@
 
 	function init(){
 		svgList = document.querySelector('.svg-list');
+		if(!svgList){
+			return;
+		}
+
 		copyarea = document.querySelector('.js-copyarea');
 		output = document.querySelector('.js-output');
 

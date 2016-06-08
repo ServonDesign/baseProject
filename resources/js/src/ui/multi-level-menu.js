@@ -52,7 +52,7 @@ const MlMenu = {
 	menuIn: menuIn,
 	addBreadcrumb: addBreadcrumb,
 	breadcrumbClick: breadcrumbClick,
-	appendBreadCrumb: appendBreadCrumb,
+	renderBreadCrumbs: renderBreadCrumbs,
 
 	addEventListeners: addEventListeners,
 	removeEventListeners: removeEventListeners
@@ -82,7 +82,10 @@ function init(el, options){
 		breadcrumbsCtrl: true,
 		initialBreadcrumb: 'all',
 		breadcrumbMaxLength: 15,
+		breadcrumbSpacer: '<div class="ml-menu__breadcrumb-space">></div>',
+		subnavLinkHtml: '',
 		backCtrl: true,
+		backButtonHtml: '<',
 		itemsDelayInterval: 60,
 		onItemClick: null,
 		side: 'left',
@@ -111,14 +114,18 @@ function init(el, options){
 		this.menuContainer = this.menuEl;
 	}
 
-	this.breadcrumbsToPrepend = [];
+	const spaceWrapper = document.createElement('div');
+	spaceWrapper.innerHTML = this.options.breadcrumbSpacer;
+	this.breadcrumbSpacer = spaceWrapper.firstElementChild;
+
+	this.breadcrumbs = [];
 	this.breadcrumbSiblingsToRemove = null;
 	this.current = 0;
 
 	this.back 				= this.back.bind(this);
 	this.linkClick			= this.linkClick.bind(this);
 	this.breadcrumbClick 	= this.breadcrumbClick.bind(this);
-	this.appendBreadCrumb	= this.appendBreadCrumb.bind(this);
+	this.renderBreadCrumbs	= this.renderBreadCrumbs.bind(this);
 
 	build.call(this);
 
@@ -143,8 +150,9 @@ function build(){
 	function init(){
 		sortMenus.call(this);
 		flattenAndWrapMenus.call(this);
-		createBackButton.call(this);
+		createHeaderWrapper.call(this);
 		createBreadCrumbs.call(this);
+		createBackButton.call(this);
 		createSubNavLinks.call(this);
 	}
 
@@ -220,7 +228,25 @@ function build(){
 		for (let i = 0; i < this.menusArr.length; i++) {
 			wrapper.appendChild(this.menusArr[i].menuEl);
 		}
+		this.menuWrapper = wrapper;
 		this.menuContainer.appendChild(wrapper);
+	}
+
+	function createHeaderWrapper(){
+		const headerWrapper = document.createElement('div');
+		headerWrapper.className = "ml-menu__header";
+		this.menuContainer.insertBefore(headerWrapper, this.menuWrapper);
+		this.headerWrapper = headerWrapper;
+	}
+
+	function createBreadCrumbs(){
+		if(this.options.breadcrumbsCtrl){
+			this.breadcrumbsCtrl = document.createElement('nav');
+			this.breadcrumbsCtrl.className = 'ml-menu__breadcrumbs';
+			this.headerWrapper.appendChild(this.breadcrumbsCtrl);
+			// add initial breadcrumb
+			this.addBreadcrumb(0);
+		}
 	}
 
 	function createBackButton(){
@@ -228,18 +254,8 @@ function build(){
 			this.backCtrl = document.createElement('button');
 			this.backCtrl.className = 'ml-menu__action ml-menu__action--back ml-menu__action--hide';
 			this.backCtrl.setAttribute('aria-label', 'Go back');
-			this.backCtrl.innerHTML = '<';
-			this.menuContainer.insertBefore(this.backCtrl, this.menuContainer.firstChild);
-		}
-	}
-
-	function createBreadCrumbs(){
-		if(this.options.breadcrumbsCtrl){
-			this.breadcrumbsCtrl = document.createElement('nav');
-			this.breadcrumbsCtrl.className = 'ml-menu__breadcrumbs';
-			this.menuContainer.insertBefore(this.breadcrumbsCtrl, this.menuContainer.firstChild);
-			// add initial breadcrumb
-			this.addBreadcrumb(0);
+			this.backCtrl.innerHTML = this.options.backButtonHtml;
+			this.headerWrapper.appendChild(this.backCtrl);
 		}
 	}
 
@@ -249,6 +265,9 @@ function build(){
 			const subNavLink = document.createElement('a');
 			subNavLink.className = 'ml-menu__link--subnav';
 			subNavLink.href = '#';
+			if(this.options.subnavLinkHtml){
+				subNavLink.innerHTML = this.options.subnavLinkHtml;
+			}
 			link.parentNode.appendChild(subNavLink);
 		}.bind(this));
 	}
@@ -325,7 +344,8 @@ function back(){
 
 	// remove last breadcrumb
 	if(this.options.breadcrumbsCtrl){
-		this.breadcrumbsCtrl.removeChild(this.breadcrumbsCtrl.lastElementChild);
+		this.breadcrumbs.pop();
+		requestAnimationFrame(this.renderBreadCrumbs);
 	}
 }
 
@@ -366,10 +386,10 @@ function breadcrumbClick(evt){
 	this.menuIn(nextMenu);
 
 	// remove breadcrumbs that are ahead
-	let siblingNode = breadcrumb.nextSibling;
-	while(siblingNode){
-		this.breadcrumbsCtrl.removeChild(siblingNode);
-		siblingNode = breadcrumb.nextSibling;
+	const indexOfSiblingNode = this.breadcrumbs.indexOf(breadcrumb) + 1;
+	if(~indexOfSiblingNode){
+		this.breadcrumbs = this.breadcrumbs.slice(0, indexOfSiblingNode);
+		requestAnimationFrame(this.renderBreadCrumbs);
 	}
 }
 
@@ -458,15 +478,19 @@ function addBreadcrumb(index){
 	}
 	bc.innerHTML = breadcrumbName;
 	bc.setAttribute('data-index', index);
-	this.breadcrumbsToPrepend.push(bc);
-	requestAnimationFrame(this.appendBreadCrumb);
+
+	this.breadcrumbs.push(bc);
+	requestAnimationFrame(this.renderBreadCrumbs);
 }
 
-function appendBreadCrumb(){
-	for (var i = 0; i < this.breadcrumbsToPrepend.length; i++) {
-		this.breadcrumbsCtrl.appendChild(this.breadcrumbsToPrepend[i]);
+function renderBreadCrumbs(){
+	this.breadcrumbsCtrl.innerHTML = "";
+	for (let i = 0; i < this.breadcrumbs.length; i++) {
+		this.breadcrumbsCtrl.appendChild(this.breadcrumbs[i]);
+		if(i < this.breadcrumbs.length - 1){
+			this.breadcrumbsCtrl.appendChild(this.breadcrumbSpacer.cloneNode(true));
+		}
 	}
-	this.breadcrumbsToPrepend = [];
 }
 
 export default createMlMenu;

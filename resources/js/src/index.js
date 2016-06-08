@@ -60,8 +60,12 @@ document.addEventListener('DOMContentLoaded', event => {
 	// .resize(true)     // bind resize handler
 	// .pack();           // pack initial items
 	const menu = createMlMenu('.js-menu-test', {
-		side: 'right',
-		clone: false
+		side: 'left',
+		clone: false,
+		breadcrumbSpacer: '<div class="ml-menu__breadcrumb-space"><svg><use xlink:href="/resources/imgs/svgsprite.svg#breadcrumb-spacer" /></svg></div>',
+		subnavLinkHtml: '<svg><use xlink:href="/resources/imgs/svgsprite.svg#menu-dots" /></svg>',
+		backButtonHtml: '<svg><use xlink:href="/resources/imgs/svgsprite.svg#menu-back" /></svg>',
+		closeButtonHtml: '<svg><use xlink:href="/resources/imgs/svgsprite.svg#close" /></svg>'
 	});
 	const showMenu = document.querySelector('.js-menu-show');
 	if(showMenu){
