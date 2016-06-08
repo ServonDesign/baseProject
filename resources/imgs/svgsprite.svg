@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<symbol id="menu-alt" viewBox="0 0 24 24">
+		<line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="12" x2="14" y2="12" stroke-linejoin="miter"></line>
+		<line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="5" x2="23" y2="5" stroke-linejoin="miter"></line>
+		<line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="19" x2="23" y2="19" stroke-linejoin="miter"></line>
+	</symbol>
+
+	<symbol id="folder" viewBox="0 0 24 24">
+		<line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="8" x2="23" y2="8" stroke-linejoin="miter"></line>
+		<polygon fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="23,23 1,23 1,1 10,1 12,4 23,4 " stroke-linejoin="miter"></polygon>
+	</symbol>
+
+	<symbol id="filter" viewBox="0 0 24 24">
+		<polygon fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="21,5 14,11 14,20 10,22 10,11 3,5 3,1 21,1 " stroke-linejoin="miter"></polygon>
+	</symbol>
+
+	<symbol id="select" viewBox="0 0 48 48">
+		<path d="M24,33c0.3,0,0.7-0.2,0.8-0.5l10-16c0.2-0.3,0.2-0.7,0-1C34.7,15.2,34.4,15,34,15H14c-0.4,0-0.7,0.2-0.9,0.5 c-0.2,0.3-0.2,0.7,0,1l10,16C23.3,32.8,23.7,33,24,33z"></path>
+	</symbol>
+
+	<symbol id="checkbox" viewBox="0 0 24 24">
+		<polygon points="2,11 4,9 9,12 20,4 22,6 9,19 "></polygon>
+	</symbol>
+</svg>

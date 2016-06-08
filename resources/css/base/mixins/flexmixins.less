@@ -2,12 +2,6 @@
 // applies to flex container
 
 .inline-flexbox(){
-	// 2009 spec
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-box;
-	display: -o-box;
-	display: box;
 	// tweener -ms- spec
 	display: -ms-inline-flexbox;
 	// 2013 spec
@@ -21,12 +15,6 @@
 // applies to flex container
 
 .flexbox(){
-	// 2009 spec
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-box;
-	display: -o-box;
-	display: box;
 	// // tweener -ms- spec
 	// display: -webkit-flexbox;
 	// display: -moz-flexbox;
@@ -66,118 +54,19 @@
 // flex-basis  uses any valid value for width (i.e. px, em, rem, %)
 
 // handling when 2013 or tweener spec is 'none' instead of shorthand values
-.flex(@spec; @flex) when (@flex = none) and (@spec = 2013),
-(@spec = tweener){
-	// tweener -ms- spec is same as 2013
-	// 2013 spec
-	-webkit-flex: 0 0 auto;
-	-moz-flex: 0 0 auto;
-	-ms-flex: 0 0 auto;
-	-o-flex: 0 0 auto;
-	flex: 0 0 auto;
-}
-
-// handling when 2013 or tweener spec is 'auto' instead of shorthand values
-.flex(@spec; @flex) when (@flex = auto) and (@spec = 2013),
-(@spec = tweener){
-	// tweener -ms- spec is same as 2013
-	// 2013 spec
-	-webkit-flex: 1 1 auto;
-	-moz-flex: 1 1 auto;
-	-ms-flex: 1 1 auto;
-	-o-flex: 1 1 auto;
-	flex: 1 1 auto;
-}
-
-// handling when 2013 or tweener spec is 'initial' instead of shorthand values
-.flex(@spec; @flex) when (@flex = initial) and (@spec = 2013),
-(@spec = tweener){
-	// tweener -ms- spec is same as 2013
-	// 2013 spec
-	-webkit-flex: 0 1 auto;
-	-moz-flex: 0 1 auto;
-	-ms-flex: 0 1 auto;
-	-o-flex: 0 1 auto;
-	flex: 0 1 auto;
-}
-
-// handling 2009 'none' value
-.flex(@spec; @grow) when (@grow = none) and (@spec = 2009){
-	// 2009 spec
-	-webkit-box-flex: 0;
-	-moz-box-flex: 0;
-	-ms-box-flex: 0;
-	-o-box-flex: 0;
-	box-flex: 0;
-}
-
-// handling remaining 2009 scenarios where it is not 'none'
-.flex(@spec; @grow) when (isnumber(@grow)) and (@spec = 2009){
-	// 2009 spec (accepts only 1 integer value)
-	-webkit-box-flex: @grow;
-	-moz-box-flex: @grow;
-	-ms-box-flex: @grow;
-	-o-box-flex: @grow;
-	box-flex: @grow;
-}
-
 // this should cover all other scenarios that are not 2009 and/or not 'none'
-.flex(@spec; @grow; @shrink; @basis) when not (@spec = 2009){
-	// tweener -ms- spec is same as 2013
-	// 2013 spec
-	-webkit-flex: @grow @shrink @basis;
-	-moz-flex: @grow @shrink @basis;
-	-ms-flex: @grow @shrink @basis;
-	-o-flex: @grow @shrink @basis;
-	flex: @grow @shrink @basis;
+.flex(@args){
+	-webkit-flex: @args;
+	-moz-flex: @args;
+	-ms-flex: @args;
+	-o-flex: @args;
+	flex: @args;
 }
 
 // flex-direction //
 
 // applies to flex container
 
-// 2009 spec
-.flex-direction(@direction) when (@direction = row){
-	-webkit-box-orient: horizontal;
-	-moz-box-orient: horizontal;
-	-ms-box-orient: horizontal;
-	-o-box-orient: horizontal;
-	box-orient: horizontal;
-}
-// 2009 spec
-.flex-direction(@direction) when (@direction = row-reverse){
-	-webkit-box-orient: horizontal;
-	-moz-box-orient: horizontal;
-	-ms-box-orient: horizontal;
-	-o-box-orient: horizontal;
-	box-orient: horizontal;
-	-webkit-box-direction: reverse;
-	-moz-box-direction: reverse;
-	-ms-box-direction: reverse;
-	-o-box-direction: reverse;
-	box-direction: reverse;
-}
-// 2009 spec
-.flex-direction(@direction) when (@direction = column){
-	-webkit-box-orient: vertical;
-	-moz-box-orient: vertical;
-	-ms-box-orient: vertical;
-	-o-box-orient: vertical;
-	box-orient: vertical;
-}
-// 2009 spec
-.flex-direction(@direction) when (@direction = column-reverse){
-	-webkit-box-orient: vertical;
-	-moz-box-orient: vertical;
-	-ms-box-orient: vertical;
-	-o-box-orient: vertical;
-	box-orient: vertical;
-	-webkit-box-direction: reverse;
-	-moz-box-direction: reverse;
-	-ms-box-direction: reverse;
-	-o-box-direction: reverse;
-	box-direction: reverse;
-}
 // 2013 spec
 .flex-direction(@direction){
 	-webkit-flex-direction: @direction;
@@ -198,12 +87,6 @@
 // 2013 spec is order and starts at 0
 
 .order(@order){
-	// 2009 spec
-	-webkit-box-ordinal-group: @order + 1;
-	-moz-box-ordinal-group: @order + 1;
-	-ms-box-ordinal-group: @order + 1;
-	-o-box-ordinal-group: @order + 1;
-	box-ordinal-group: @order + 1;
 	// tweener -ms- spec
 	-ms-flex-order: @order;
 	// 2013 spec
@@ -217,48 +100,6 @@
 // flex-wrap //
 
 // applies to flex container
-
-// 2009 property is box-lines
-// single == nowrap
-// multiple == wrap
-// no equivalent to wrap-reverse
-// initial = single
-
-// 2009 spec
-.flex-wrap(@wrap-method) when (@wrap-method = wrap){
-	-webkit-lines: multiple;
-	-webkit-box-lines: multiple;
-	-moz-box-lines: multiple;
-	-ms-box-lines: multiple;
-	-o-box-lines: multiple;
-	box-lines: multiple;
-}
-
-//box lines doesn't have wrap reverse, so use box-direction
-// 2009 spec
-.flex-wrap(@wrap-method) when (@wrap-method = wrap-reverse){
-	-webkit-lines: multiple;
-	-webkit-box-lines: multiple;
-	-moz-box-lines: multiple;
-	-ms-box-lines: multiple;
-	-o-box-lines: multiple;
-	box-lines: multiple;
-	-webkit-box-direction: reverse;
-	-moz-box-direction: reverse;
-	-ms-box-direction: reverse;
-	-o-box-direction: reverse;
-	box-direction: reverse;
-}
-
-// 2009 spec
-.flex-wrap(@wrap-method) when (@wrap-method = nowrap){
-	-webkit-lines: single;
-	-webkit-box-lines: single;
-	-moz-box-lines: single;
-	-ms-box-lines: single;
-	-o-box-lines: single;
-	box-lines: single;
-}
 
 // 2013 spec is flex-wrap instead of box-lines
 // nowrap = single line LTR
@@ -290,13 +131,7 @@
 // baseline == baseline
 // stretch = stretch
 
-.align-items(@align-item-method) when (@align-item-method = start){
-	// 2009 spec
-	-webkit-box-align: start;
-	-moz-box-align: start;
-	-ms-box-align: start;
-	-o-box-align: start;
-	box-align: start;
+.align-items(@align-item-method) when (@align-item-method = flex-start){
 	// tweener -ms- spec
 	-ms-flex-align: start;
 	// 2013 spec
@@ -307,13 +142,7 @@
 	align-items: flex-start;
 }
 
-.align-items(@align-item-method) when (@align-item-method = end){
-	// 2009 spec
-	-webkit-box-align: end;
-	-moz-box-align: end;
-	-ms-box-align: end;
-	-o-box-align: end;
-	box-align: end;
+.align-items(@align-item-method) when (@align-item-method = flex-end){
 	// tweener -ms- spec
 	-ms-flex-align: end;
 	// 2013 spec
@@ -329,12 +158,6 @@
 (@align-item-method = center),
 (@align-item-method = baseline),
 (@align-item-method = stretch){
-	// 2009 spec
-	-webkit-box-align: @align-item-method;
-	-moz-box-align: @align-item-method;
-	-ms-box-align: @align-item-method;
-	-o-box-align: @align-item-method;
-	box-align: @align-item-method;
 	// tweener -ms- spec
 	-ms-flex-align: @align-item-method;
 	// 2013 spec
@@ -361,10 +184,10 @@
 // baseline == baseline
 // stretch = stretch
 
-.align-self(@align-self-method) when (@align-self-method = start){
+.align-self(@align-self-method) when (@align-self-method = flex-start){
 	// tweener -ms- spec
-	-ms-flex-item-align: @align-self-method;
-	flex-item-align: @align-self-method;
+	-ms-flex-item-align: start;
+	flex-item-align: start;
 	// 2013 spec
 	-webkit-align-self: flex-start;
 	-moz-align-self: flex-start;
@@ -373,10 +196,10 @@
 	align-self: flex-start;
 }
 
-.align-self(@align-self-method) when (@align-self-method = end){
+.align-self(@align-self-method) when (@align-self-method = flex-end){
 	// tweener -ms- spec
-	-ms-flex-item-align: @align-self-method;
-	flex-item-align: @align-self-method;
+	-ms-flex-item-align: end;
+	flex-item-align: end;
 	// 2013 spec
 	-webkit-align-self: flex-end;
 	-moz-align-self: flex-end;
@@ -418,9 +241,9 @@
 // center == center
 // stretch == stretch
 
-.align-content(@align-content-method) when (@align-content-method = start){
+.align-content(@align-content-method) when (@align-content-method = flex-start){
 	// tweener -ms- spec
-	-ms-flex-line-pack: @align-content-method;
+	-ms-flex-line-pack: start;
 	// 2013 spec
 	-webkit-align-content: flex-start;
 	-moz-align-content: flex-start;
@@ -428,9 +251,9 @@
 	align-content: flex-start;
 }
 
-.align-content(@align-content-method) when (@align-content-method = end){
+.align-content(@align-content-method) when (@align-content-method = flex-end){
 	// tweener -ms- spec
-	-ms-flex-line-pack: @align-content-method;
+	-ms-flex-line-pack: end;
 	// 2013 spec
 	-webkit-align-content: flex-end;
 	-moz-align-content: flex-end;
@@ -487,15 +310,9 @@
 // space-around == distribute
 // 2009 spec does not support 'distribute' or 'space-around' property
 
-.justify-content(@justify-method) when (@justify-method = start){
-	//2009
-	-webkit-box-pack: @justify-method;
-	-moz-box-pack: @justify-method;
-	-ms-box-pack: @justify-method;
-	-o-box-pack: @justify-method;
-	box-pack: @justify-method;
+.justify-content(@justify-method) when (@justify-method = flex-start){
 	//tweener -ms-
-	-ms-flex-pack: @justify-method;
+	-ms-flex-pack: start;
 	// current spec
 	-webkit-justify-content: flex-start;
 	-moz-justify-content: flex-start;
@@ -504,15 +321,9 @@
 	justify-content: flex-start;
 }
 
-.justify-content(@justify-method) when (@justify-method = end){
-	// 2009 spec
-	-webkit-box-pack: @justify-method;
-	-moz-box-pack: @justify-method;
-	-ms-box-pack: @justify-method;
-	-o-box-pack: @justify-method;
-	box-pack: @justify-method;
+.justify-content(@justify-method) when (@justify-method = flex-end){
 	// tweener -ms- spec
-	-ms-flex-pack: @justify-method;
+	-ms-flex-pack: end;
 	// 2013 spec
 	-webkit-justify-content: flex-end;
 	-moz-justify-content: flex-end;
@@ -522,9 +333,6 @@
 }
 
 .justify-content(@justify-method) when (@justify-method = center){
-	// 2009 spec
-	-webkit-box-pack: center;
-	-moz-box-pack: center;
 	// tweener -ms- spec
 	-ms-flex-pack: center;
 	// 2013 spec
@@ -536,9 +344,6 @@
 }
 
 .justify-content(@justify-method) when (@justify-method = space-between){
-	// 2009 spec
-	-webkit-box-pack: justify;
-	-moz-box-pack: justify;
 	// tweener -ms- spec
 	-ms-flex-pack: justify;
 	// 2013 spec
@@ -575,8 +380,6 @@
 // controls positive growth of flex items
 
 .flex-grow(@multiplier){
-	// 2009 spec
-	-webkit-box-flex: @multiplier;
 	// 2013 spec and tweener -ms- spec
 	-webkit-flex-grow: @multiplier;
 	-moz-box-flex: @multiplier;

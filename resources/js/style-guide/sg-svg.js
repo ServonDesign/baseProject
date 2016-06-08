@@ -1,30 +1,36 @@
 (function(){
 	"use strict";
-	
+
 	var copyarea,
-		svgname,
+		svgList,
+		spriteUrl,
 		output;
 
 	function init(){
-		svgname = $('.svg-item');
-		copyarea = $('.js-copyarea');
-		output = $('.js-output');
+		svgList = document.querySelector('.svg-list');
+		copyarea = document.querySelector('.js-copyarea');
+		output = document.querySelector('.js-output');
 
-		svgname.on('click', handleSvgNameCopy);
+		spriteUrl = svgList.getAttribute('data-sprite-url');
+
+		svgList.addEventListener('click', handleSvgNameCopy);
 	}
 
-	function handleSvgNameCopy(e){
-		var target = $(e.target).closest('.svg-item').find('.js-svg-name');
-		var name = target.html();
-		copyarea.val('<svg><use xlink:href="'+name+'" /></svg>');
+	function handleSvgNameCopy(evt){
+		if(!evt.target.classList.contains('svg-item')){
+			return;
+		}
+		var target = evt.target.querySelector('.js-svg-name');
+		var name = target.innerHTML;
+		copyarea.innerHTML = '<svg><use xlink:href="'+spriteUrl+name+'" /></svg>';
 		copyarea.select();
 		var success = document.execCommand('copy');
 		if(success){
-			output.html('copied: '+name);
+			output.innerHTML = 'copied: '+name;
 		}else{
-			output.html('failed');
+			output.innerHTML = 'failed';
 		}
 	}
 
-	$(document).ready(init);
+	window.addEventListener('load', init);
 })();

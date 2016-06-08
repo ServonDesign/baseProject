@@ -1,43 +1,9 @@
-/* stylelint-disable at-rule-name-case, selector-combinator-space-after, block-no-empty, block-closing-brace-newline-before */
-/* stylelint-enable */
 /* stylelint-disable rule-non-nested-empty-line-before */
+/* stylelint-enable */
+/* stylelint-disable at-rule-name-case, selector-combinator-space-after, block-no-empty, block-closing-brace-newline-before */
 /* stylelint-enable */
 /* stylelint-disable media-feature-no-missing-punctuation */
 /* stylelint-enable */
-.colours {
-  width: 100%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
-  display: -o-box;
-  display: box;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-lines: multiple;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: multiple;
-  -ms-box-lines: multiple;
-  -o-box-lines: multiple;
-  box-lines: multiple;
-  -o-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-line-pack: start;
-  -webkit-align-content: flex-start;
-  -moz-align-content: flex-start;
-  -o-align-content: flex-start;
-  align-content: flex-start;
-  -moz-align-content: start;
-  -ms-align-content: start;
-  -webkit-align-content: start;
-  align-content: start;
-}
 .colours div {
   width: 200px;
   height: 100px;
@@ -107,9 +73,6 @@
   font-weight: 900;
 }
 .animation {
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   background: #ccc;
   padding: 15px;
   margin-top: 15px;
@@ -141,76 +104,13 @@
   background: #ccc;
 }
 .ratio-test-container {
-  width: calc(50%  - 30px);
-  margin-left: 15px;
-  margin-right: 15px;
   margin-bottom: 20px;
 }
-.svg-list {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
-  display: -o-box;
-  display: box;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-lines: multiple;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: multiple;
-  -ms-box-lines: multiple;
-  -o-box-lines: multiple;
-  box-lines: multiple;
-  -o-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
 .svg-item {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
-  display: -o-box;
-  display: box;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -ms-box-orient: vertical;
-  -o-box-orient: vertical;
-  box-orient: vertical;
-  -o-flex-direction: column;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -ms-box-align: center;
-  -o-box-align: center;
-  box-align: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
   cursor: pointer;
 }
-@media (min-width: 62em) {
-  .svg-item {
-    width: calc(16.66666667%  - 30px);
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+.svg-item * {
+  pointer-events: none;
 }
 .svg-item--fill {
   fill: #666;

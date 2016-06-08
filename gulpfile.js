@@ -1,8 +1,11 @@
 //global packages = [browserify, eslint, nodemon, postcss-cli]
 var gulp 		= require('gulp'),
-    sourcemaps 	= require('gulp-sourcemaps'),
-    watch 		= require('gulp-watch');
-   
+	sourcemaps 	= require('gulp-sourcemaps'),
+	watch 		= require('gulp-watch'),
+	plumber 	= require('gulp-plumber'),
+	browserSync = require('browser-sync').create(),
+	reload 		= browserSync.reload;;
+
 
 //===============================
 // 		Util
@@ -13,16 +16,16 @@ var gutil = require('gulp-util'),
 function map_error(err) {
 	if (err.fileName) {
 		// regular error
-		gutil.log(chalk.red(err.name) 
-			+ ': ' 
-			+ chalk.yellow(err.fileName.replace(__dirname + '/src/js/', '')) 
-			+ ': ' 
-			+ 'Line ' 
-			+ chalk.magenta(err.lineNumber) 
-			+ ' & ' 
-			+ 'Column ' 
-			+ chalk.magenta(err.columnNumber || err.column) 
-			+ ': ' 
+		gutil.log(chalk.red(err.name)
+			+ ': '
+			+ chalk.yellow(err.fileName.replace(__dirname + '/src/js/', ''))
+			+ ': '
+			+ 'Line '
+			+ chalk.magenta(err.lineNumber)
+			+ ' & '
+			+ 'Column '
+			+ chalk.magenta(err.columnNumber || err.column)
+			+ ': '
 			+ chalk.blue(err.description));
 	} else {
 		// browserify error..
@@ -30,6 +33,7 @@ function map_error(err) {
 			+ ': '
 			+ chalk.yellow(err.message));
 	}
+	this.emit('end');
 }
 
 
@@ -46,6 +50,7 @@ var less 				= require('gulp-less'),
 
 gulp.task('less', function(){
 	return gulp.src(['./resources/css/main.less', './resources/css/styleguide.less'])
+		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			//plugins: [cleancss]
@@ -59,6 +64,7 @@ gulp.task('stylelint', function(){
 	var stylelint = require('stylelint');
 
 	return gulp.src('./resources/css/**/*.less')
+		.pipe(plumber())
 		.pipe(watch('./resources/css/**/*.less'))
 		.pipe(postcss(
 			[
@@ -75,6 +81,7 @@ gulp.task('doiuse', function(){
 	var doiuse = require('doiuse');
 
 	return gulp.src('./resources/css/**/*.less')
+		.pipe(plumber())
 		.pipe(watch('./resources/css/**/*.less'))
 		.pipe(postcss(
 			[
@@ -105,15 +112,15 @@ gulp.task('build-less', ['analyseCss', 'less'])
 //===============================
 
 var watchify 			= require('watchify'),
-    browserify 			= require('browserify'),
-    babelify 			= require('babelify'),
-    uglify 				= require('gulp-uglify'),
+	browserify 			= require('browserify'),
+	babelify 			= require('babelify'),
+	uglify 				= require('gulp-uglify'),
 
-    rename 				= require('gulp-rename'),
-    merge  				= require('merge-stream'),
-    assign 				= require('lodash.assign'),
-    source 				= require('vinyl-source-stream'),
-    buffer 				= require('vinyl-buffer');
+	rename 				= require('gulp-rename'),
+	merge  				= require('merge-stream'),
+	assign 				= require('lodash.assign'),
+	source 				= require('vinyl-source-stream'),
+	buffer 				= require('vinyl-buffer');
 
 gulp.task('watch-js', function () {
 	var customOpts = {
@@ -128,12 +135,16 @@ gulp.task('watch-js', function () {
 	};
 
 	bundler.on('update', scripts);
+	bundler.on('log', function(log){
+		gutil.log(log + ' - watch-js');
+	});
 
 	return scripts();
 });
 
 function bundle_js(bundler) {
 	return bundler.bundle()
+		.pipe(plumber())
 		.on('error', map_error)
 		.pipe(source('index.js'))
 		.pipe(buffer())
@@ -154,27 +165,50 @@ gulp.task('build-js', function(){
 // 		Style guide - Tasks
 //===============================
 
-gulp.task('styleguide', function(){
-	var nodemon = require('gulp-nodemon');
-
-	nodemon({
-		script: 'index.js',
-		watch: ['./components', './resources/js/dist', 'resources/css'],
-		ext: 'js html css'
-	})
-	.on('config:update', function(){
-		setTimeout(function(){
-			require('open')('http://localhost:3000');
-		}, 1000);
+gulp.task('styleguide-browser-sync', function(){
+	browserSync.init(null, {
+		proxy: "http://localhost:3000"
 	});
 });
 
+gulp.task('styleguide', function(cb){
+	var nodemon = require('gulp-nodemon');
+
+	var callbackCalled = false;
+
+	return nodemon({script: 'index.js'})
+	.on('start', function(){
+		if (!callbackCalled) {
+			callbackCalled = true;
+			cb();
+		}
+	})
+});
+
+gulp.task('watch-sg', ['styleguide-browser-sync', 'styleguide'], function(){
+	gulp.watch(['./resources/css/*.css', './resources/js/dist/*.js', './components/**/*.html'], reload);
+});
+
+//===============================
+// 		Html - Tasks
+//===============================
+
+gulp.task('html-browser-sync', function(){
+	browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+    gulp.watch(['./*.html', './resources/css/*.css', './resources/js/dist/*.js'], reload);
+});
 
 //===============================
 // 		Grouped Tasks
 //===============================
 
 gulp.task('build', ['build-js', 'build-less']);
-gulp.task('watch', ['styleguide', 'watch-js', 'watch-less']);
+gulp.task('watch', ['watch-sg', 'watch-js', 'watch-less']);
+gulp.task('watch-html', ['html-browser-sync', 'watch-js', 'watch-less']);
 //task: analyse-less
+
 gulp.task('default', ["watch"]);

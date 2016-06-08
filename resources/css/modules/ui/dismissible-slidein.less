@@ -1,0 +1,68 @@
+.ds-slidein{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+
+	&--visible{
+		pointer-events: auto;
+	}
+
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.4);
+		opacity: 0;
+		will-change: opacity;
+		transition: opacity 0.3s @easeIn;
+	}
+
+	&__container{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 400px;
+		background: #fff;
+		height: 100%;
+		box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+		transform: translateX(-102%);
+		will-change: transform;
+	}
+
+	&--right &__container{
+		left: auto;
+		right: 0;
+		transform: translateX(102%);
+		box-shadow: -2px 0 12px rgba(0,0,0,0.4);
+	}
+
+	&--animatable &__container{
+		transition: transform 0.2s @easeIn;
+	}
+
+	&--visible&--animatable &__container{
+		transition: transform 0.4s @easeIn;
+	}
+
+	&--visible:before{
+		opacity: 1;
+	}
+
+	&--visible &__container{
+		transform: none;
+	}
+
+	&__action{
+		&--hide{
+			display: none;
+		}
+	}
+}

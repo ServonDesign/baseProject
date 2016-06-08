@@ -1,0 +1,273 @@
+/* stylelint-disable at-rule-name-case, selector-combinator-space-after, block-no-empty, block-closing-brace-newline-before */
+//==========
+// Container
+//==========
+
+.container(@fluid: none, @gutterType: @default-gutterType) when (@fluid = fluid){
+	#container-helpers.basic-container();
+
+	@media (min-width: @container-gutter-breakpoint){
+		padding-left: @fluid-gutter;
+		padding-right: @fluid-gutter;
+	}
+}
+
+.container(@fluid: none, @gutterType: @default-gutterType) when (@fluid = fluid) and (@gutterType = pullin){
+	#container-helpers.basic-container();
+
+	@media (min-width: @container-gutter-breakpoint){
+		padding-left: @fluid-pull-in-gutter;
+		padding-right: @fluid-pull-in-gutter;
+	}
+}
+
+.container(@fluid: none, @gutterType: @default-gutterType) when (default()){
+	#container-helpers.basic-container();
+	max-width: @max-container-width;
+
+	@media (min-width: @container-gutter-breakpoint){
+		padding-left: @gutter;
+		padding-right: @gutter;
+	}
+}
+
+.nested-container(){
+	#container-helpers.nested-container();
+}
+
+#container-helpers{
+	.nested-container(){
+		width: 100%;
+		.flexbox();
+		.flex-wrap(wrap);
+		.align-content(flex-start);
+	}
+
+	.basic-container(){
+		margin-left: auto;
+		margin-right: auto;
+		.nested-container();
+	}
+}
+
+//========
+// Columns
+//========
+.base-column(@gutterType: @default-gutterType, @gutterSize: @column-gutter-half){
+	@gridWidth: 100%;
+	.gutter(@gutterSize, none, @gutterType);
+	#column-helpers.getWidthType(@gutterType);
+
+	@rules();
+}
+
+.base-column-nogutter(){
+	@gridWidth: 100%;
+	@gutterType: padding;
+	#column-helpers.getWidthType(@gutterType);
+}
+
+.base-column-m(){
+	@gridWidth: 100%;
+	@gutterType: margin;
+	.gutter(@column-gutter-half, none, @gutterType);
+	#column-helpers.getWidthType(@gutterType);
+
+	@rules();
+}
+
+.base-column-p(){
+	@gridWidth: 100%;
+	@gutterType: padding;
+	.gutter(@column-gutter-half, none, @gutterType);
+	#column-helpers.getWidthType(@gutterType);
+
+	@rules();
+}
+
+.column(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType, @gutterSize: @column-gutter-half){
+	.gutter(@gutterSize, @breakpoint, @gutterType);
+	#column-helpers.getColumnWidth(@columns, @breakpoint, @gutterType);
+}
+
+.column-nogutter(@columns: @max-columns, @breakpoint: @default-breakpoint){
+	#column-helpers.getColumnWidth-nogutter(@columns, @breakpoint, padding);
+}
+
+.column-push(@columns: @max-columns, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType, @pushColumns: 1, @gutterSize: @column-gutter-half){
+	.push(@pushColumns, @gutterSize, @breakpoint, @gutterType);
+	#column-helpers.getColumnWidth(@columns, @breakpoint, @gutterType);
+}
+
+.column-m(@columns: @max-columns, @breakpoint: @default-breakpoint){
+	@gutterType: margin;
+	.gutter(@column-gutter-half, @breakpoint, @gutterType);
+	.column(@columns, @breakpoint, @gutterType);
+}
+
+.column-p(@columns: @max-columns, @breakpoint: @default-breakpoint){
+	@gutterType: padding;
+	.gutter(@column-gutter-half, @breakpoint, @gutterType);
+	.column(@columns, @breakpoint, @gutterType);
+}
+
+#column-helpers{
+	.getColumnWidth(@columns, @breakpoint, @gutterType) when (@breakpoint = none){
+		.cacluateWidth(@columns);
+		.getWidthType(@gutterType);
+
+		@rules();
+	}
+
+	.getColumnWidth(@columns, @breakpoint, @gutterType) when (default()){
+		.getBreakpoint(@breakpoint);
+		.getBreakpointRules(@breakpoint);
+
+		@media(min-width: @breakpointValue){
+			.cacluateWidth(@columns);
+			.getWidthType(@gutterType);
+
+			@breakpointExtraRules();
+		}
+	}
+
+	.getColumnWidth-nogutter(@columns, @breakpoint, @gutterType) when (@breakpoint = none){
+		.cacluateWidth(@columns);
+		.getWidthType(@gutterType);
+	}
+
+	.getColumnWidth-nogutter(@columns, @breakpoint, @gutterType) when (default()){
+		.getBreakpoint(@breakpoint);
+
+		@media(min-width: @breakpointValue){
+			.cacluateWidth(@columns);
+			.getWidthType(@gutterType);
+		}
+	}
+
+	.getWidthType(@gutterType) when (@gutterType = padding){
+		width: @gridWidth;
+	}
+
+	.getWidthType(@gutterType) when (@gutterType = margin){
+		width: calc(@gridWidth ~" -" @column-gutter-calc-size);
+	}
+
+	.cacluateWidth(@columns) when (@columns >= @max-columns){
+		@gridWidth: 100%;
+	}
+	.cacluateWidth(@columns) when (@columns < 1){
+		@gridWidth: percentage(1 / @max-columns);
+	}
+	.cacluateWidth(@columns) when (default()){
+		@gridWidth: percentage(@columns / @max-columns);
+	}
+
+	.getBreakpoint(@breakpoint) when (@breakpoint = xs){
+		@breakpointValue: @xs-min;
+	}
+	.getBreakpoint(@breakpoint) when (@breakpoint = sm){
+		@breakpointValue: @sm-min;
+	}
+	.getBreakpoint(@breakpoint) when (@breakpoint = md){
+		@breakpointValue: @md-min;
+	}
+	.getBreakpoint(@breakpoint) when (@breakpoint = lg){
+		@breakpointValue: @lg-min;
+	}
+	.getBreakpoint(@breakpoint) when (@breakpoint = xlg){
+		@breakpointValue: @xlg-min;
+	}
+
+	.getBreakpointRules(@breakpoint) when (@breakpoint = xs){
+		@breakpointExtraRules: @xs-rules;
+	}
+	.getBreakpointRules(@breakpoint) when (@breakpoint = sm){
+		@breakpointExtraRules: @sm-rules;
+	}
+	.getBreakpointRules(@breakpoint) when (@breakpoint = md){
+		@breakpointExtraRules: @md-rules;
+	}
+	.getBreakpointRules(@breakpoint) when (@breakpoint = lg){
+		@breakpointExtraRules: @lg-rules;
+	}
+	.getBreakpointRules(@breakpoint) when (@breakpoint = xlg){
+		@breakpointExtraRules: @xlg-rules;
+	}
+}
+
+//=========
+// Gutter
+//=========
+
+.gutter(@gutter-size: @column-gutter-half, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType){
+	#gutter-helpers.setGutterRules(@gutter-size, @gutter-size, @gutterType);
+	#gutter-helpers.setBreakpointRules(@breakpoint);
+	@column-gutter-calc-size: (@gutter-size * 2);
+}
+
+.gutter-p(@gutter-size: @column-gutter-half, @breakpoint: @default-breakpoint){
+	.gutter(@gutter-size, @breakpoint, padding);
+}
+
+.gutter-m(@gutter-size: @column-gutter-half, @breakpoint: @default-breakpoint){
+	.gutter(@gutter-size, @breakpoint, margin);
+}
+
+.push(@column: 1, @gutter-size: @column-gutter-half, @breakpoint: @default-breakpoint, @gutterType: @default-gutterType){
+	#column-helpers.cacluateWidth(@column);
+	@gutter-size-left: calc(@gridWidth ~" +" @gutter-size);
+	@gutter-size-right: @gutter-size;
+	#gutter-helpers.setGutterRules(@gutter-size-left, @gutter-size-right, @gutterType);
+	#gutter-helpers.setBreakpointRules(@breakpoint);
+	@column-gutter-calc-size: (@gutter-size * 2);
+}
+
+#gutter-helpers{
+	.setGutterRules(@gutter-size-left, @gutter-size-right, @gutterType) when (@gutter-size > 0){
+		.getGutterType(@gutterType);
+
+		@gutterRules:{
+			@{gutterRuleLeft}: @gutter-size-left;
+			@{gutterRuleRight}: @gutter-size-right;
+		};
+
+	}
+
+	.setGutterRules(@gutter-size-left, @gutter-size-right, @gutterType) when (default()){
+		.getGutterType(@gutterType);
+
+		@gutterRules: {};
+
+	}
+
+	.getGutterType(@gutterType) when (@gutterType = padding){
+		@gutterRuleLeft: padding-left;
+		@gutterRuleRight: padding-right;
+	}
+
+	.getGutterType(@gutterType) when (@gutterType = margin){
+		@gutterRuleLeft: margin-left;
+		@gutterRuleRight: margin-right;
+	}
+
+	.setBreakpointRules(@breakpoint) when (@breakpoint = xs){
+		@xs-rules: @gutterRules;
+	}
+	.setBreakpointRules(@breakpoint) when (@breakpoint = sm){
+		@sm-rules: @gutterRules;
+	}
+	.setBreakpointRules(@breakpoint) when (@breakpoint = md){
+		@md-rules: @gutterRules;
+	}
+	.setBreakpointRules(@breakpoint) when (@breakpoint = lg){
+		@lg-rules: @gutterRules;
+	}
+	.setBreakpointRules(@breakpoint) when (@breakpoint = xlg){
+		@xlg-rules: @gutterRules;
+	}
+	.setBreakpointRules(@breakpoint) when (default()){
+		@rules: @gutterRules;
+	}
+}
+/* stylelint-enable */
