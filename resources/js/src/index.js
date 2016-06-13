@@ -6,6 +6,9 @@ import poly from "./util/polyfills";
 
 import createMlMenu from "./ui/multi-level-menu";
 import svg4everybody from "../vendor/svg4everybody";
+import modal from "./ui/modal";
+
+import fontloading from "./util/font-loading";
 
 //const add = (a, b) => a + b;
 
@@ -73,4 +76,38 @@ document.addEventListener('DOMContentLoaded', event => {
 	}
 
 	svg4everybody();
+
+	modal.init(true);
+
+	fontloading({
+		subFonts: [
+			{
+				name: 'aileron subset',
+				option: {
+					weight: 400
+				}
+			}
+		],
+		fullFonts: [
+			{
+				name: 'aileron',
+				option: {
+					weight: 400
+				}
+			},
+			{
+				name: 'aileron',
+				option: {
+					weight: 400,
+					style: 'italic'
+				}
+			},
+			{
+				name: 'aileron',
+				option: {
+					weight: 700
+				}
+			}
+		]
+	});
 });

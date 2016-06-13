@@ -1,6 +1,9 @@
 .results-list{
 	&__item{
-		.nested-container();
+		.column();
+		.gutter();
+		.column-size(12, none);
+		.column-container();
 
 		& + &{
 			margin-top: 30px;
@@ -8,8 +11,9 @@
 	}
 
 	&__image{
-		.base-column-m();
-		.column-m(2);
+		.column();
+		.gutter();
+		.column-size(2, none);
 
 		@media(max-width: @sm-max){
 			margin-bottom: 10px;
@@ -17,9 +21,9 @@
 	}
 
 	&__content{
-		.base-column-m();
-		.column-m(10);
-		.flex-grow(1);
+		.column();
+		.gutter();
+		.column-size(10, none);
 
 		padding-top: 8px;
 	}

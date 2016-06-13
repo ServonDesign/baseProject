@@ -4,7 +4,7 @@ var gulp 		= require('gulp'),
 	watch 		= require('gulp-watch'),
 	plumber 	= require('gulp-plumber'),
 	browserSync = require('browser-sync').create(),
-	reload 		= browserSync.reload;;
+	reload 		= browserSync.reload;
 
 
 //===============================
@@ -53,7 +53,7 @@ gulp.task('less', function(){
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(less({
-			//plugins: [cleancss]
+			plugins: [cleancss]
 		}))
 		.on('error', map_error)
 		.pipe(sourcemaps.write('.'))
@@ -165,18 +165,20 @@ gulp.task('build-js', function(){
 // 		Style guide - Tasks
 //===============================
 
-gulp.task('styleguide-browser-sync', function(){
-	browserSync.init(null, {
-		proxy: "http://localhost:3000"
-	});
-});
-
 gulp.task('styleguide', function(cb){
 	var nodemon = require('gulp-nodemon');
 
 	var callbackCalled = false;
 
-	return nodemon({script: 'index.js'})
+	browserSync.init(null, {
+		proxy: "http://localhost:3000"
+	});
+
+	return nodemon({
+		script: 'index.js',
+		watch: ['./components'],
+		ext: 'html'
+	})
 	.on('start', function(){
 		if (!callbackCalled) {
 			callbackCalled = true;
@@ -185,7 +187,7 @@ gulp.task('styleguide', function(cb){
 	})
 });
 
-gulp.task('watch-sg', ['styleguide-browser-sync', 'styleguide'], function(){
+gulp.task('watch-sg', ['styleguide'], function(){
 	gulp.watch(['./resources/css/*.css', './resources/js/dist/*.js', './components/**/*.html'], reload);
 });
 

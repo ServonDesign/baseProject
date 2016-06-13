@@ -1,22 +1,33 @@
-//varibles and mixins
+//====================
+// Vars/Mixins
+//====================
 @import "base/variables";
 @import "base/mixins";
 
-//base
+//====================
+// Base
+//====================
 @import "base/reset";
 @import "base/fontfaces";
 
-//utils
-//@import "utility/svg-sprite-wrap";
-@import "utility/visibility";
-@import "utility/ratios";
+//====================
+// Helpers
+//====================
+//@import "helpers/svg-sprite-wrap";
+@import "helpers/visibility";
+@import "helpers/ratios";
 
-//animation
+//====================
+// Animation
+//====================
 @import "base/animation/keyframes";
 
-//elements
+//====================
+// Elements
+//====================
 @import "elements/html";
 @import "elements/body";
+@import "elements/font-loading";
 @import "elements/links";
 @import "elements/type";
 @import "elements/lists";
@@ -24,33 +35,35 @@
 @import "elements/hr";
 @import "elements/buttons";
 @import "elements/table";
-//@import "elements/figure";
+@import "elements/figure";
 @import "elements/image";
 @import "elements/address";
 
-//forms
-//@import "forms/form";
+//====================
+// Forms
+//====================
+@import "forms/form";
 
-//UI
-@import "modules/ui/dismissible-slidein";
-@import "modules/ui/ml-menu";
+//====================
+// Layout
+//====================
+@import "layout/common";
 
-//blog
-//@import "modules/blog/blog";
-//@import "modules/blog/results";
-//@import "modules/blog/blog__meta";
-//@import "modules/blog/sidebar";
-//@import "modules/blog/sidebar-bands";
-//@import "modules/blog/previous-posts";
+//====================
+// Components
+//====================
 
-// .container{
-// 	.container();
-// 	.columns();
-// }
+// UI
+//===============
+@import "components/ui/dismissible-slidein";
+@import "components/ui/ml-menu";
+@import "components/ui/modal";
 
-// .column{
-// 	.column();
-// 	height: 50px;
-// 	background: #bbf;
-// 	padding: 10px;
-// }
+// Blog
+//===============
+@import "components/blog/blog";
+@import "components/blog/results";
+@import "components/blog/blog__meta";
+@import "components/blog/sidebar";
+@import "components/blog/sidebar-bands";
+@import "components/blog/previous-posts";
