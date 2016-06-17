@@ -1,45 +1,7 @@
 import createSlideIn from './dismissible-slidein';
+import {onEndAnimation, extend} from './../util/util';
 
 'use strict';
-
-const animationEndEventName = ['animationend'];//, 'webkitAnimationEnd', 'MSAnimationEnd', 'oAnimationEnd'];
-
-const util = {
-	onEndAnimation: function(el, callback){
-		const onEndCallbackFn = function(evt){
-			if(evt.target !== this){
-				return;
-			}
-			for (let i = 0; i < animationEndEventName.length; i++) {
-				this.removeEventListener(animationEndEventName[i], onEndCallbackFn);
-			}
-			if(callback && typeof callback === 'function'){
-				callback.call();
-			}
-		};
-		for (let i = 0; i < animationEndEventName.length; i++) {
-			el.addEventListener(animationEndEventName[i], onEndCallbackFn);
-		}
-	},
-	extend: function(){
-		const objects = arguments;
-		if(objects.length < 2){
-			return objects[0];
-		}
-		const combinedObject = objects[0];
-
-		for(let i = 1; i < objects.length; i++){
-			if(!objects[i]){
-				continue;
-			}
-			for(let key in objects[i]){
-				combinedObject[key] = objects[i][key];
-			}
-		}
-
-		return combinedObject;
-	}
-};
 
 const MlMenu = {
 	init: init,
@@ -52,6 +14,7 @@ const MlMenu = {
 	menuIn: menuIn,
 	addBreadcrumb: addBreadcrumb,
 	breadcrumbClick: breadcrumbClick,
+	removeBreadcrumbs: removeBreadcrumbs,
 	renderBreadCrumbs: renderBreadCrumbs,
 
 	addEventListeners: addEventListeners,
@@ -93,7 +56,7 @@ function init(el, options){
 		clone: false
 	};
 
-	this.options = util.extend({}, this.defaultOptions, this.options, options);
+	this.options = extend({}, this.defaultOptions, this.options, options);
 
 	if(this.options.side == 'right'){
 		this.options.isRight = true;
@@ -166,7 +129,7 @@ function build(){
 					continue;
 				}
 				links[i].classList.add('ml-menu__link');
-				links[i].setAttribute('data-pos', pos + 1);
+				links[i].setAttribute('data-pos', pos);
 			}
 			return links;
 		};
@@ -315,7 +278,6 @@ function linkClick(evt){
 
 	if(submenu && subMenuEl){
 		evt.preventDefault();
-
 		this.openSubMenu(subMenuEl, pos, itemName);
 	}else{
 		const currentLink = this.menuEl.querySelector('.ml-menu__link--current');
@@ -323,7 +285,24 @@ function linkClick(evt){
 			currentLink.classList.remove('ml-menu__link--current');
 		}
 
+		const currentUnderLinks = Array.prototype.slice.call(this.menuEl.querySelectorAll('.ml-menu__link--current-under'));
+		if(currentUnderLinks.length){
+			for (let i = 0; i < currentUnderLinks.length; i++) {
+				currentUnderLinks[i].classList.remove('ml-menu__link--current-under');
+			}
+		}
+
 		evt.target.classList.add('ml-menu__link--current');
+		for (let i = 0; i < this.breadcrumbs.length; i++) {
+			if(this.breadcrumbs[i].isFirst){
+				continue;
+			}
+
+			const backindex = this.menusArr[this.breadcrumbs[i].index].backIdx;
+			const menuLocation = this.menusArr[this.breadcrumbs[i].index].menuEl.getAttribute('data-menu');
+			const link = this.menusArr[backindex].menuEl.querySelector('[data-submenu='+menuLocation+']');
+			link.classList.add('ml-menu__link--current-under');
+		}
 
 		if(this.options.onItemClick){
 			this.options.onItemClick(evt, itemName);
@@ -344,8 +323,7 @@ function back(){
 
 	// remove last breadcrumb
 	if(this.options.breadcrumbsCtrl){
-		this.breadcrumbs.pop();
-		requestAnimationFrame(this.renderBreadCrumbs);
+		this.removeBreadcrumbs();
 	}
 }
 
@@ -388,8 +366,7 @@ function breadcrumbClick(evt){
 	// remove breadcrumbs that are ahead
 	const indexOfSiblingNode = this.breadcrumbs.indexOf(breadcrumb) + 1;
 	if(~indexOfSiblingNode){
-		this.breadcrumbs = this.breadcrumbs.slice(0, indexOfSiblingNode);
-		requestAnimationFrame(this.renderBreadCrumbs);
+		this.removeBreadcrumbs(indexOfSiblingNode);
 	}
 }
 
@@ -406,7 +383,7 @@ function menuOut(clickPosition){
 		item.style.WebkitAnimationDelay = item.style.animationDelay = isBackNavigation ? parseInt(itemPos * this.options.itemsDelayInterval) + 'ms' : parseInt(Math.abs(clickPosition - itemPos) * this.options.itemsDelayInterval) + 'ms';
 	}.bind(this));
 
-	util.onEndAnimation(menuItems[farthestIdx].parentNode, function(){
+	onEndAnimation(menuItems[farthestIdx].parentNode, function(){
 		this.isBackAnimating = false;
 	}.bind(this));
 
@@ -435,7 +412,12 @@ function menuIn(nextMenuEl, clickPosition){
 		item.style.WebkitAnimationDelay = item.style.animationDelay = isBackNavigation ? parseInt(itemPos * this.options.itemsDelayInterval) + 'ms' : parseInt(Math.abs(clickPosition - itemPos) * this.options.itemsDelayInterval) + 'ms';
 	}.bind(this));
 
-	util.onEndAnimation(nextMenuItems[farthestIdx].parentNode, function(){
+	if(!isBackNavigation){
+		// add breadcrumb
+		this.addBreadcrumb(nextMenuIdx);
+	}
+
+	onEndAnimation(nextMenuItems[farthestIdx].parentNode, function(){
 		currentMenu.classList.remove(!(!isBackNavigation ^ !this.options.isRight) ? 'animate-outToRight' : 'animate-outToLeft');
 		currentMenu.classList.remove('ml-menu__level--current');
 		nextMenuEl.classList.remove(!(!isBackNavigation ^ !this.options.isRight) ? 'animate-inFromLeft' : 'animate-inFromRight');
@@ -450,9 +432,6 @@ function menuIn(nextMenuEl, clickPosition){
 			if(this.options.backCtrl){
 				this.backCtrl.classList.remove('ml-menu__action--hide');
 			}
-
-			// add breadcrumb
-			this.addBreadcrumb(nextMenuIdx);
 		}else if(this.current === 0 && this.options.backCtrl){
 			// hide back button
 			this.backCtrl.classList.add('ml-menu__action--hide');
@@ -478,19 +457,95 @@ function addBreadcrumb(index){
 	}
 	bc.innerHTML = breadcrumbName;
 	bc.setAttribute('data-index', index);
+	const spacer = this.breadcrumbSpacer.cloneNode(true);
 
-	this.breadcrumbs.push(bc);
+	const breadcrumb = {
+		bcEl: bc,
+		spacer: spacer,
+		in: true,
+		out: false,
+		isFirst: !index,
+		index: index,
+		setanimClasses: function(){
+			if(this.in){
+				this.bcEl.classList.add('animate-in');
+				this.spacer.classList.add('animate-in');
+			}else if(this.out){
+				this.bcEl.classList.add('animate-out');
+				this.spacer.classList.add('animate-out');
+			}
+		}
+	};
+
+	this.breadcrumbs.push(breadcrumb);
 	requestAnimationFrame(this.renderBreadCrumbs);
+}
+
+function removeBreadcrumbs(index){
+	if(index != undefined){
+		let delay = 0;
+		const delayInterval = 0.05;
+		for (let i = this.breadcrumbs.length - 1; i >= index; i--) {
+			if(this.breadcrumbs[i].isFirst){
+				continue;
+			}
+			this.breadcrumbs[i].out = true;
+			this.breadcrumbs[i].bcEl.style.animationDelay = delay+"s";
+			delay += delayInterval;
+			this.breadcrumbs[i].spacer.style.animationDelay = delay+"s";
+			delay += delayInterval;
+		}
+	}else{
+		this.breadcrumbs[this.breadcrumbs.length -1].out = true;
+	}
+	requestAnimationFrame(this.renderBreadCrumbs);
+}
+
+function breadcrumbsAfterRender(){
+	const breadcrumbsIn = this.breadcrumbs.filter(function(el){
+		return el.in;
+	});
+
+	if(breadcrumbsIn.length){
+		onEndAnimation(breadcrumbsIn[breadcrumbsIn.length - 1].bcEl, function(){
+			breadcrumbsIn.forEach(function(el){
+				el.in = false;
+				el.bcEl.classList.remove('animate-in');
+				el.spacer.classList.remove('animate-in');
+			});
+		}.bind(this));
+	}
+
+	const breadcrumbsOut = this.breadcrumbs.filter(function(el){
+		return el.out;
+	});
+
+	if(breadcrumbsOut.length){
+		onEndAnimation(breadcrumbsOut[breadcrumbsOut.length-1].bcEl, function(){
+			breadcrumbsOut.forEach(function(el){
+				el.bcEl.remove();
+				el.spacer.remove();
+			});
+		}.bind(this));
+
+		this.breadcrumbs = this.breadcrumbs.filter(function(el){
+			return !el.out;
+		});
+	}
+
 }
 
 function renderBreadCrumbs(){
 	this.breadcrumbsCtrl.innerHTML = "";
 	for (let i = 0; i < this.breadcrumbs.length; i++) {
-		this.breadcrumbsCtrl.appendChild(this.breadcrumbs[i]);
-		if(i < this.breadcrumbs.length - 1){
-			this.breadcrumbsCtrl.appendChild(this.breadcrumbSpacer.cloneNode(true));
+		this.breadcrumbs[i].setanimClasses();
+		if(!this.breadcrumbs[i].isFirst){
+			this.breadcrumbsCtrl.appendChild(this.breadcrumbs[i].spacer);
 		}
+		this.breadcrumbsCtrl.appendChild(this.breadcrumbs[i].bcEl);
 	}
+
+	breadcrumbsAfterRender.call(this);
 }
 
 export default createMlMenu;

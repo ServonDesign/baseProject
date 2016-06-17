@@ -1,3 +1,5 @@
+import {extend} from './../util/util';
+
 'use strict';
 
 const transitionEndName = ['webkitTransitionEnd', 'transitionend', 'msTransitionEnd', 'oTransitionEnd'];
@@ -19,28 +21,6 @@ const DismissibleSlideIn = {
 	removeEventListeners: removeEventListeners
 };
 
-const util = {
-	extend: function(){
-		const objects = arguments;
-		if(objects.length < 2){
-			return objects[0];
-		}
-		const combinedObject = objects[0];
-
-		for(let i = 1; i < objects.length; i++){
-			if(!objects[i]){
-				continue;
-			}
-			for(let key in objects[i]){
-				combinedObject[key] = objects[i][key];
-			}
-		}
-
-		return combinedObject;
-	}
-};
-
-
 function createSlideIn(el, options){
 	const slideIn = Object.create(DismissibleSlideIn);
 	slideIn.init(el, options);
@@ -58,7 +38,7 @@ function init(el, options){
 		closeButtonHtml: 'x'
 	};
 
-	this.options = util.extend({}, this.defaultOptions, this.options, options);
+	this.options = extend({}, this.defaultOptions, this.options, options);
 
 	this.el = el;
 	if(typeof this.el === "string"){

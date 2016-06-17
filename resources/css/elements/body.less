@@ -4,8 +4,14 @@ body{
 	color: @text-color;
 	background-color: @body-bg;
 	margin: 0;
-	line-height: @line-height;
+
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	font-kerning: normal;
+
 	overflow-x: hidden;
+	font-weight: @base-font-weight;
+
+	.font-size-unit(p, em);
+	.line-height();
 }

@@ -1,0 +1,64 @@
+//====================
+// Typography Mixins
+//====================
+
+// changed based on website type, used to apply same font-size accross site
+// @tag, choose tag to get font-size for
+// @unit, allows change of unit, mostly used for body as it need to be an em
+// the reason for em on body is to get past chrome bug when setting base fontsize t 10px
+.font-size-unit(@tag, @unit: @base-unit){
+	#fontHelpers.getTagFontSize(@tag, @unit, @major-second, 1.5rem);
+	font-size: @font-size;
+}
+
+//manually set line-height allowing for same line-height accross site
+.line-height(){
+	line-height: @p-line-height;
+}
+
+//shorthand for font-size causing all units to be rem
+.font-size(@tag: p){
+	.font-size-unit(@tag);
+}
+
+//fontsize
+/* stylelint-disable */
+#fontHelpers{
+	.getPFontSize(@unit: @base-unit, @size: @base-font-size){
+		.getTagFontSize(p, @unit, @base-scale, @size);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = p), (@tag = h5){
+		.getFontUnit(@size, @unit);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = h1){
+		@font-size-h1: round((@size * 10) * pow(@scale-factor, 3)) / 10;
+		.getFontUnit(@font-size-h1, @unit);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = h2){
+		@font-size-h2: round((@size * 10) * pow(@scale-factor, 2)) / 10;
+		.getFontUnit(@font-size-h2, @unit);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = h3){
+		@font-size-h3: round((@size * 10) * pow(@scale-factor, 1)) / 10;
+		.getFontUnit(@font-size-h3, @unit);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = h4){
+		@font-size-h4: round((@size * 10) * pow(@scale-factor, 0.5)) / 10;
+		.getFontUnit(@font-size-h4, @unit);
+	}
+
+	.getTagFontSize(@tag, @unit: @base-unit, @scale-factor: @base-scale, @size: @base-font-size) when (@tag = h6){
+		@font-size-h6: round((@size * 10) * pow(@scale-factor, -1)) / 10;
+		.getFontUnit(@font-size-h6, @unit);
+	}
+
+	.getFontUnit(@var-font-size, @unit: @base-unit){
+		@font-size: unit(@var-font-size, @unit);
+	}
+}
+/* stylelint-enable */

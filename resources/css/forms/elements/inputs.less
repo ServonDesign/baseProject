@@ -20,12 +20,13 @@ input[type="color"]{
 	padding-left: 12px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	line-height: @line-height;
 	color: @input-color;
 	background-color: @input-bg;
 	background-image: none;
 	border: 1px solid @input-border;
-	font-family: @font-family;
+	font-family: @font-family-unloaded;
+	.font-size();
+	.line-height();
 
 	.placeholder();
 
@@ -36,5 +37,9 @@ input[type="color"]{
 		opacity: 1;
 		color: @input-disabled-color;
 		.placeholder(@input-disabled-color);
+	}
+
+	&:focus{
+		box-shadow: 0 0 4px @input-focus;
 	}
 }

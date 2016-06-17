@@ -1,5 +1,4 @@
 import poly from "./util/polyfills";
-//import {sum} from "./import";
 
 //import curry from "../vendor/ramda/curry";
 //import Bricks from "../vendor/brick";
@@ -7,61 +6,44 @@ import poly from "./util/polyfills";
 import createMlMenu from "./ui/multi-level-menu";
 import svg4everybody from "../vendor/svg4everybody";
 import modal from "./ui/modal";
-
 import fontloading from "./util/font-loading";
+import newFormValidation from "./form/validation";
 
-//const add = (a, b) => a + b;
+// function brick(){
+	// import Bricks
 
-// const add = curry(sum);
-// var increment = add(1);
+	// define your grid at different breakpoints, mobile first (smallest to largest)
 
-// console.log(increment(10));
+	// const sizes = [
+	// 	{ columns: 2, gutter: 10 },                   // assumed to be mobile, because of the missing mq property
+	// 	{ mq: '768px', columns: 3, gutter: 25 },
+	// 	{ mq: '1024px', columns: 4, gutter: 50 }
+	// ]
 
-// console.log(brick);
+	// create an instance
 
-// fetch('test.json')
-// .then(function(response){
-// 	return response.json();
-// })
-// .then(function(json){
-// 	console.log(json);
-// })
-// .catch(function(err){
-// 	console.log(err);
-// });
+	// const instance = Bricks({
+	// 	container: '.container',
+	// 	packed:    'data-packed',        // if not prefixed with 'data-', it will be added
+	// 	sizes:     sizes
+	// })
 
-// import Bricks
+	// bind callbacks
 
-// define your grid at different breakpoints, mobile first (smallest to largest)
+	// instance
+	// .on('pack',   () => console.log('ALL grid items packed.'))
+	// .on('update', () => console.log('NEW grid items packed.'))
+	// .on('resize', size => console.log('The grid has be re-packed to accommodate a new BREAKPOINT.'))
 
-// const sizes = [
-// 	{ columns: 2, gutter: 10 },                   // assumed to be mobile, because of the missing mq property
-// 	{ mq: '768px', columns: 3, gutter: 25 },
-// 	{ mq: '1024px', columns: 4, gutter: 50 }
-// ]
+	// start it up, when the DOM is ready
+	// note that if images are in the grid, you may need to wait for document.readyState === 'complete'
 
-// create an instance
-
-// const instance = Bricks({
-// 	container: '.container',
-// 	packed:    'data-packed',        // if not prefixed with 'data-', it will be added
-// 	sizes:     sizes
-// })
-
-// bind callbacks
-
-// instance
-// .on('pack',   () => console.log('ALL grid items packed.'))
-// .on('update', () => console.log('NEW grid items packed.'))
-// .on('resize', size => console.log('The grid has be re-packed to accommodate a new BREAKPOINT.'))
-
-// start it up, when the DOM is ready
-// note that if images are in the grid, you may need to wait for document.readyState === 'complete'
-
-document.addEventListener('DOMContentLoaded', event => {
 	// instance
 	// .resize(true)     // bind resize handler
 	// .pack();           // pack initial items
+// }
+
+function setupMenu(){
 	const menu = createMlMenu('.js-menu-test', {
 		side: 'left',
 		clone: false,
@@ -70,19 +52,19 @@ document.addEventListener('DOMContentLoaded', event => {
 		backButtonHtml: '<svg><use xlink:href="/resources/imgs/svgsprite.svg#menu-back" /></svg>',
 		closeButtonHtml: '<svg><use xlink:href="/resources/imgs/svgsprite.svg#close" /></svg>'
 	});
+
 	const showMenu = document.querySelector('.js-menu-show');
+
 	if(showMenu){
 		showMenu.addEventListener('click', menu.slideInController.show);
 	}
+}
 
-	svg4everybody();
-
-	modal.init(true);
-
+function setupFontLoading(){
 	fontloading({
 		subFonts: [
 			{
-				name: 'aileron subset',
+				name: 'aileron_subset',
 				option: {
 					weight: 400
 				}
@@ -98,16 +80,24 @@ document.addEventListener('DOMContentLoaded', event => {
 			{
 				name: 'aileron',
 				option: {
-					weight: 400,
-					style: 'italic'
+					weight: 300
 				}
 			},
 			{
 				name: 'aileron',
 				option: {
-					weight: 700
+					weight: 200
 				}
 			}
 		]
 	});
+}
+
+document.addEventListener('DOMContentLoaded', function(evt){
+	setupMenu();
+	setupFontLoading();
+	svg4everybody();
+	modal.init(true);
+
+	newFormValidation('.js-form-validation');
 });

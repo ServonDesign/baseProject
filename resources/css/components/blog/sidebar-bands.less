@@ -1,6 +1,16 @@
 .sidebar{
 	&__bands{
 		font-size: 1.3rem;
+
+		.sidebar__item__icon{
+			&:before{
+				background-color: @sidebar-band-icon;
+			}
+		}
+	}
+
+	&__bands &__item-btn{
+		border: 1px solid @sidebar-band-border;
 	}
 
 	&__item{

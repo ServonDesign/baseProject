@@ -171,7 +171,7 @@ gulp.task('styleguide', function(cb){
 	var callbackCalled = false;
 
 	browserSync.init(null, {
-		proxy: "http://localhost:3000"
+		proxy: "http://localhost:8080"
 	});
 
 	return nodemon({
